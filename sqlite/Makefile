@@ -6,8 +6,8 @@
 #################################################################################
 ##
 
-all: sqlite3.c shell.c
-	gcc sqlite3.c shell.c -o sqlite3 -lpthread -ldl
+sqlite3.o: sqlite3.c 
+	gcc sqlite3.c -c -lpthread -ldl
 
 clear: 
 	rm *.o

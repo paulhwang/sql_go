@@ -8,10 +8,10 @@
 
 include Makefile.inc
 
-OBJS = main.o root_class.o
+OBJS = main.o root_class.o sqlite/sqlite3.o
 
 all: $(OBJS)
-	$(CC) $(OBJS) -o go
+	$(CC) $(OBJS) -o go -lpthread -ldl
 
 clear: 
 	rm go; rm *.o
