@@ -7,11 +7,11 @@
  */
 
 #include <stdio.h>
-#include "root_class.h"
+#include "core/root_class.h"
 
-root_class *root;
+RootClass *root;
 
 int main() {
 	printf("hello phwang\n");
-	root = new root_class;
+	root = new RootClass;
 }

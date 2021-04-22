@@ -9,9 +9,9 @@
 #include <stdio.h>
 #include "root_class.h"
 
-root_class::root_class() {
+RootClass::RootClass() {
 	printf("root\n");
 }
 
-root_class::~root_class() {
+RootClass::~RootClass() {
 }

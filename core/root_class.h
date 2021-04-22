@@ -7,8 +7,8 @@
  */
 
 
-class root_class {
+class RootClass {
 public:
-	root_class();
-	~root_class();
+	RootClass();
+	~RootClass();
 };
