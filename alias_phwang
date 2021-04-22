@@ -1,0 +1,8 @@
+alias a="alias"
+alias l="ls"
+alias ll="ls -l"
+alias lll="ls -a"
+alias llll="ls -al"
+alias cdg="cd; cd github"
+alias cds="cdg; cd sql_go"
+

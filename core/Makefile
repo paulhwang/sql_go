@@ -6,13 +6,13 @@
 #################################################################################
 ##
 
-include Makefile.inc
+include ../Makefile.inc
 
-OBJS = main.o core/root_class.o sqlite/sqlite3.o
+OBJS = root_class.o
 
 all: $(OBJS)
-	$(CC) $(OBJS) -o go -lpthread -ldl
+	$(CC) -c $(OBJS)
 
 clear: 
-	rm go; rm *.o
+	rm *.o
 
