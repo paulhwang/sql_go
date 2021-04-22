@@ -16,5 +16,7 @@ TestClass *test;
 int main() {
 	printf("hello phwang\n");
 	root = new RootClass;
-	test = new TestClass;
+	test = new TestClass(root);
+	test->doTest();
+
 }

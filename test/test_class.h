@@ -9,10 +9,20 @@
 #ifndef TEST_CLASS_H
 #define TEST_CLASS_H
 
+#include "../sqlite/sqlite3.h"
+#include "../core/root_class.h"
+
 class TestClass {
 public:
-	TestClass();
+	TestClass(RootClass *);
 	~TestClass();
+	void doTest();
+	sqlite3 *userSqlite3() { return this->userSqlite3_; }
+
+private:
+	RootClass *rootClass_;
+	sqlite3 *userSqlite3_;
+
 };
 
 #endif

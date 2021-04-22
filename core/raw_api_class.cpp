@@ -49,7 +49,6 @@ const unsigned char *RawApiClass::sqlite3ColumnText(sqlite3_stmt* stmt_val, int 
 	return sqlite3_column_text(stmt_val, iCol);
 }
 
-
 int RawApiClass::sqlite3Finalize(sqlite3_stmt *pStmt) {
 	return sqlite3_finalize(pStmt);
 }

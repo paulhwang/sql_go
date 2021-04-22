@@ -37,6 +37,7 @@ public:
 	const unsigned char *sqlite3ColumnText(sqlite3_stmt*, int iCol);
 	int sqlite3Finalize(sqlite3_stmt *pStmt);
 	int sqlite3Close(sqlite3*);
+	
 	int sqlite3Exec(
 		sqlite3*,                                  /* An open database */
 		const char *sql,                           /* SQL to be evaluated */
