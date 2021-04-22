@@ -2,7 +2,8 @@
 # Written by Paul Hwang
 # Global Makefile.inc
 
-CC		= g++
+GPP		= g++
+GCC		= gcc
 
 LD		= g++
 LDFLAGS	=

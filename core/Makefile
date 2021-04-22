@@ -8,10 +8,10 @@
 
 include ../Makefile.inc
 
-OBJS = root_class.o
+OBJS = root_class.o raw_api_class.o
 
 all: $(OBJS)
-	$(CC) -c $(OBJS)
+	$(GPP) -c $(OBJS)
 
 clear: 
 	rm *.o

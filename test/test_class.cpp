@@ -7,13 +7,11 @@
  */
 
 #include <stdio.h>
-#include "root_class.h"
-#include "raw_api_class.h"
+#include "test_class.h"
 
-RootClass::RootClass() {
-	printf("RootClass\n");
-	new RawApiClass();
+TestClass::TestClass() {
+	printf("TestClass\n");
 }
 
-RootClass::~RootClass() {
+TestClass::~TestClass() {
 }

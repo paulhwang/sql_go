@@ -8,8 +8,10 @@
 
 include ../Makefile.inc
 
-sqlite3.o: sqlite3.c 
-	$(GCC) sqlite3.c -c -lpthread -ldl
+OBJS = test_class.o
+
+all: $(OBJS)
+	$(GPP) -c $(OBJS)
 
 clear: 
 	rm *.o

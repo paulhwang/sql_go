@@ -8,11 +8,19 @@
 
 include Makefile.inc
 
-OBJS = main.o core/root_class.o sqlite/sqlite3.o
+SERVER = sqlgo
 
-all: $(OBJS)
-	$(CC) $(OBJS) -o go -lpthread -ldl
+CORE_OBJS = core/root_class.o core/raw_api_class.o
+SQLITE_OBJS = sqlite/sqlite3.o
+TEST_OBJS = test/test_class.o
+
+OBJS = main.o $(CORE_OBJS) $(SQLITE_OBJS) $(TEST_OBJS)
+
+all:	$(SERVER)
+
+$(SERVER): $(OBJS)
+		$(GPP) $(OBJS) -o $(SERVER) -lpthread -ldl
 
 clear: 
-	rm go; rm *.o
+	rm $(SERVER); rm *.o
 
