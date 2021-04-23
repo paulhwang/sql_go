@@ -22,7 +22,7 @@ int RawApiClass::sqlite3Open(const char *filename, sqlite3 **ppDb) {
 }
 
 int RawApiClass::sqlite3Prepare(sqlite3 *db, const char *zSql, int nByte, sqlite3_stmt **ppStmt, const char **pzTail) {
-	return sqlite3_prepare(db, zSql, nByte, ppStmt, pzTail);
+	return sqlite3_prepare_v2(db, zSql, nByte, ppStmt, pzTail);
 }
 
 int RawApiClass::sqlite3BindInt(sqlite3_stmt* stmt_val, int int_val1, int int_val2) {
