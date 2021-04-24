@@ -19,14 +19,14 @@ CORE_LIB = core.a
 TEST_DIR = test
 TEST_LIB = test.a
 
-ALL_LIB = $(CORE_LIB) $(TEST_LIB) 
+ALL_LIBS = $(CORE_LIB) $(TEST_LIB) 
+ALL_OBJS = main.o $(ALL_LIBS) 
 
-OBJS = main.o $(ALL_LIB) $(SQLITE_OBJS)
 
 all:	$(SERVER)
 
-$(SERVER): $(OBJS)
-		$(GPP) $(OBJS) -o $(SERVER) -lpthread -ldl
+$(SERVER): $(ALL_OBJS) $(SQLITE_OBJS)
+		$(GPP) $(ALL_OBJS) $(SQLITE_OBJS) -o $(SERVER) -lpthread -ldl
 
 $(CORE_LIB):	
 		cd $(CORE_DIR); make; cd ..
@@ -35,5 +35,5 @@ $(TEST_LIB):
 		cd $(TEST_DIR); make; cd ..
 
 clear: 
-	$(RM) $(SERVER); $(RM) $(ALL_LIB)   rm *.o 
+	$(RM) $(SERVER); $(RM) $(ALL_OBJS)
 
