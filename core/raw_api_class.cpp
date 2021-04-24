@@ -7,11 +7,14 @@
  */
 
 #include <stdio.h>
+#include "../utils/utils_class.h"
 #include "../sqlite/sqlite3.h"
+#include "root_class.h"
 #include "raw_api_class.h"
 
-RawApiClass::RawApiClass() {
-	printf("RawApiClass\n");
+RawApiClass::RawApiClass(RootClass *root_object_val) {
+	this->rootObject_ = root_object_val;
+	this->log("RawApiClass", "init");
 }
 
 RawApiClass::~RawApiClass() {
@@ -60,3 +63,19 @@ int RawApiClass::sqlite3Close(sqlite3* sqlite3_val) {
 int RawApiClass::sqlite3Exec(sqlite3* sqlite3_val, const char *sql, int (*callback)(void*,int,char**,char**), void * val, char **errmsg) {
 	return sqlite3_exec(sqlite3_val, sql, callback, val, errmsg);
 }
+
+ void RawApiClass::debug(bool on_off_val, char *s0, char *s1) {
+ 	if (on_off_val) this->log(s0, s1);
+ }
+ 
+ void RawApiClass::log(const char *s0, const char *s1) {
+	char buf[1048];
+ 	sprintf(buf, "%s.%s()", this->objectName(), s0);
+ 	this->rootObject()->logIt(buf, s1);
+}
+ 
+ void RawApiClass::abend(const char *s0, const char *s1) {
+ 	char buf[1048];
+ 	sprintf(buf, "%s.%s()", this->objectName(), s0);
+ 	this->rootObject()->abendIt(buf, s1);
+ }

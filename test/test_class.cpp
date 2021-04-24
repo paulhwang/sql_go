@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "../utils/utils_class.h"
 #include "test_class.h"
+#include "../core/raw_api_class.h"
 
 TestClass::TestClass(RootClass *root_class_val) {
 	printf("TestClass\n");

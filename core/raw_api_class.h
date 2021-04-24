@@ -9,12 +9,13 @@
 #ifndef RAW_API_CLASS_H
 #define RAW_API_CLASS_H
 
-//#include "root_class.h"
 #include "../sqlite/sqlite3.h"
+
+class RootClass;
 
 class RawApiClass {
 public:
-	RawApiClass();
+	RawApiClass(RootClass *root_object_val);
 	~RawApiClass();
 
 	int sqlite3Open(
@@ -48,12 +49,14 @@ public:
 		);
 
 private:
-	//RootClass *rootObject_;
-	//RootClass *rootObject() { return this->rootObject_; }
+	const char *objectName() { return "RawApiClass"; }
 
-    //void debug(bool on_off_val, char *s0, char *s1) { if (on_off_val) this->log(s0, s1); }
-    //void log(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->rootObject()->logIt(buf, s1); }
-    //void abend(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->rootObject()->abendIt(buf, s1); }
+	RootClass *rootObject_;
+	RootClass *rootObject() { return this->rootObject_; }
+
+    void debug(bool on_off_val, char *s0, char *s1);
+    void log(const char *s0, const char *s1);
+    void abend(const char *s0, const char *s1);
 };
 
 #endif
