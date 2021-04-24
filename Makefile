@@ -10,17 +10,30 @@ include Makefile.inc
 
 SERVER = sqlgo
 
-CORE_OBJS = core/root_class.o core/raw_api_class.o
-SQLITE_OBJS = sqlite/sqlite3.o
-TEST_OBJS = test/test_class.o
+SQLITE_DIR = sqlite
+SQLITE_OBJS = $(SQLITE_DIR)/sqlite3.o
 
-OBJS = main.o $(CORE_OBJS) $(SQLITE_OBJS) $(TEST_OBJS)
+CORE_DIR = core
+CORE_LIB = core.a
+
+TEST_DIR = test
+TEST_LIB = test.a
+
+ALL_LIB = $(CORE_LIB) $(TEST_LIB) 
+
+OBJS = main.o $(ALL_LIB) $(SQLITE_OBJS)
 
 all:	$(SERVER)
 
 $(SERVER): $(OBJS)
 		$(GPP) $(OBJS) -o $(SERVER) -lpthread -ldl
 
+$(CORE_LIB):	
+		cd $(CORE_DIR); make; cd ..
+
+$(TEST_LIB):	
+		cd $(TEST_DIR); make; cd ..
+
 clear: 
-	rm $(SERVER); rm *.o
+	$(RM) $(SERVER); $(RM) $(ALL_LIB)   rm *.o 
 

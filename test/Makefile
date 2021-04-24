@@ -8,14 +8,16 @@
 
 include ../Makefile.inc
 
-OBJS = test_class.o
+TEST_LIB = ../test.a
+TEST_OBJS = test_class.o
 
-all: $(OBJS)
-	$(GPP) -c $(OBJS)
-
+$(TEST_LIB): $(TEST_OBJS)
+	$(AR) $(ARFLAGS) -r $(TEST_LIB) $(TEST_OBJS)
+	$(RANLIB) $(TEST_LIB)
+	
 test_class.o:	test_class.cpp test_class.h
 	$(GPP) -c test_class.cpp
 
 clear: 
-	rm *.o
+	$(RM) $(TEST_LIB); $(RM) $(TEST_OBJS)
 
