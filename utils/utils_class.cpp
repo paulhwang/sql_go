@@ -7,14 +7,13 @@
  */
 
 #include <stdio.h>
-#include "root_class.h"
-#include "raw_api_class.h"
+#include "utils_class.h"
+#include "abend/abend_class.h"
 
-RootClass::RootClass() {
-	printf("RootClass\n");
-	this->rawApiObject_ = new RawApiClass();
-	this->utilsClass_ = new UtilsClass();
+UtilsClass::UtilsClass() {
+	printf("UtilsClass\n");
 }
 
-RootClass::~RootClass() {
+UtilsClass::~UtilsClass() {
 }
+

@@ -7,11 +7,13 @@
  */
 
 #include <stdio.h>
+#include "../utils/utils_class.h"
 #include "test_class.h"
 
 TestClass::TestClass(RootClass *root_class_val) {
 	printf("TestClass\n");
 	this->rootClass_ = root_class_val;
+	AbendClass::log("aaaa", "BBB");
 }
 
 TestClass::~TestClass() {

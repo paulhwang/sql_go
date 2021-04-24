@@ -7,14 +7,20 @@
  */
 
 #include <stdio.h>
-#include "root_class.h"
-#include "raw_api_class.h"
+#include "abend_class.h"
 
-RootClass::RootClass() {
-	printf("RootClass\n");
-	this->rawApiObject_ = new RawApiClass();
-	this->utilsClass_ = new UtilsClass();
+AbendClass::AbendClass() {
+	printf("AbendClass\n");
 }
 
-RootClass::~RootClass() {
+AbendClass::~AbendClass() {
 }
+
+void AbendClass::log(const char* s0, const char* s1) {
+	printf("%s %saaaaa\n", s0, s1);
+    if (logStopped_) {
+    	return;
+    }
+	//abendInt_.log(s0 + " " + s1);
+}
+

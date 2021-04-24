@@ -6,15 +6,18 @@
  ******************************************************************************
  */
 
-#include <stdio.h>
-#include "root_class.h"
-#include "raw_api_class.h"
+#ifndef ABEND_CLASS_H
+#define ABEND_CLASS_H
 
-RootClass::RootClass() {
-	printf("RootClass\n");
-	this->rawApiObject_ = new RawApiClass();
-	this->utilsClass_ = new UtilsClass();
-}
+class AbendClass {
+public:
+	AbendClass();
+	~AbendClass();
 
-RootClass::~RootClass() {
-}
+	static void log(char* s0, char* s1);
+
+private:
+	bool logStopped_ = false;
+};
+
+#endif

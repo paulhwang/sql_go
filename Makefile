@@ -19,7 +19,10 @@ CORE_LIB = core.a
 TEST_DIR = test
 TEST_LIB = test.a
 
-ALL_LIBS = $(CORE_LIB) $(TEST_LIB) 
+UTILS_DIR = utils
+UTILS_LIB = utils.a
+
+ALL_LIBS = $(CORE_LIB) $(TEST_LIB) $(UTILS_LIB)
 ALL_OBJS = main.o $(ALL_LIBS) 
 
 
@@ -33,6 +36,9 @@ $(CORE_LIB):
 
 $(TEST_LIB):	
 		cd $(TEST_DIR); make; cd ..
+
+$(UTILS_LIB):	
+		cd $(UTILS_DIR); make; cd ..
 
 clear: 
 	$(RM) $(SERVER); $(RM) $(ALL_OBJS)

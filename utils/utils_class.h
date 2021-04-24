@@ -6,15 +6,17 @@
  ******************************************************************************
  */
 
-#include <stdio.h>
-#include "root_class.h"
-#include "raw_api_class.h"
+#ifndef UTILS_CLASS_H
+#define UTILS_CLASS_H
 
-RootClass::RootClass() {
-	printf("RootClass\n");
-	this->rawApiObject_ = new RawApiClass();
-	this->utilsClass_ = new UtilsClass();
-}
+#include "abend/abend_class.h"
 
-RootClass::~RootClass() {
-}
+class UtilsClass {
+public:
+	UtilsClass();
+	~UtilsClass();
+
+private:
+};
+
+#endif
