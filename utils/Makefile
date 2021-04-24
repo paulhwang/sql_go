@@ -11,8 +11,11 @@ include ../Makefile.inc
 ABEND_DIR = abend
 ABEND_OBJS = $(ABEND_DIR)/abend_class.o
 
+QUEUE_DIR = queue
+QUEUE_OBJS = $(QUEUE_DIR)/queue_entry_class.o $(QUEUE_DIR)/list_queue_class.o
+
 UTILS_LIB = ../utils.a
-UTILS_OBJS = utils_class.o  $(ABEND_OBJS)
+UTILS_OBJS = utils_class.o  $(ABEND_OBJS) $(QUEUE_OBJS)
 
 $(UTILS_LIB): $(UTILS_OBJS)
 	$(AR) $(ARFLAGS) -r $(UTILS_LIB) $(UTILS_OBJS) 
@@ -23,6 +26,9 @@ utils_class.o: utils_class.cpp utils_class.h
 
 $(ABEND_OBJS):
 		cd $(ABEND_DIR); make clear; make; cd ..
+
+$(QUEUE_OBJS):
+		cd $(QUEUE_DIR); make clear; make; cd ..
 
 clear: 
 	$(RM) $(UTILS_LIB); $(RM) $(UTILS_OBJS)
