@@ -11,7 +11,7 @@
 #include "raw_api_class.h"
 
 RootClass::RootClass() {
-	printf("RootClass\n");
+	this->debug(true, "RootClass", "init");
 	
 	this->rawApiObject_ = new RawApiClass();
 	this->utilsObject_ = new UtilsClass();
