@@ -32,13 +32,13 @@ $(SERVER): $(ALL_OBJS) $(SQLITE_OBJS)
 		$(GPP) $(ALL_OBJS) $(SQLITE_OBJS) -o $(SERVER) -lpthread -ldl
 
 $(CORE_LIB):	
-		cd $(CORE_DIR); make; cd ..
+		cd $(CORE_DIR); make clear; make; cd ..
 
 $(TEST_LIB):	
-		cd $(TEST_DIR); make; cd ..
+		cd $(TEST_DIR); make clear; make; cd ..
 
 $(UTILS_LIB):	
-		cd $(UTILS_DIR); make; cd ..
+		cd $(UTILS_DIR); make clear; make; cd ..
 
 clear: 
 	$(RM) $(SERVER); $(RM) $(ALL_OBJS)

@@ -13,7 +13,7 @@
 TestClass::TestClass(RootClass *root_class_val) {
 	printf("TestClass\n");
 	this->rootClass_ = root_class_val;
-	AbendClass::log("aaaa", "BBB");
+	this->abendObject()->log("this","case");
 }
 
 TestClass::~TestClass() {

@@ -16,13 +16,14 @@ class RootClass {
 public:
 	RootClass();
 	~RootClass();
-	
+
 	RawApiClass *rawApiObject() { return this->rawApiObject_; }
-	UtilsClass *utilsClass() { return this->utilsClass_; }
+	UtilsClass *utilsObject() { return this->utilsObject_; }
+	AbendClass* abendObject() { return this->utilsObject()->abendObject(); }
 
 private:
 	RawApiClass *rawApiObject_;
-	UtilsClass *utilsClass_;
+	UtilsClass *utilsObject_;
 };
 
 #endif

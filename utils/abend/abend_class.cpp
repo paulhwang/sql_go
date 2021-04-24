@@ -17,7 +17,7 @@ AbendClass::~AbendClass() {
 }
 
 void AbendClass::log(const char* s0, const char* s1) {
-	printf("%s %saaaaa\n", s0, s1);
+	printf("%s %s\n", s0, s1);
     if (logStopped_) {
     	return;
     }

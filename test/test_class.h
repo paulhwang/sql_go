@@ -18,6 +18,8 @@ public:
 	~TestClass();
 	void doTest();
 	sqlite3 *userSqlite3() { return this->userSqlite3_; }
+	UtilsClass *utilsObject() { return this->rootClass_->utilsObject(); }
+	AbendClass* abendObject() { return this->utilsObject()->abendObject(); }
 
 private:
 	RootClass *rootClass_;

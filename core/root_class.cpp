@@ -12,8 +12,9 @@
 
 RootClass::RootClass() {
 	printf("RootClass\n");
+	
 	this->rawApiObject_ = new RawApiClass();
-	this->utilsClass_ = new UtilsClass();
+	this->utilsObject_ = new UtilsClass();
 }
 
 RootClass::~RootClass() {

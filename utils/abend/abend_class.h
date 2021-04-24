@@ -14,7 +14,7 @@ public:
 	AbendClass();
 	~AbendClass();
 
-	static void log(char* s0, char* s1);
+	void log(const char* s0, const char* s1);
 
 private:
 	bool logStopped_ = false;

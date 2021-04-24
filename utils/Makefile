@@ -12,17 +12,17 @@ ABEND_DIR = abend
 ABEND_OBJS = $(ABEND_DIR)/abend_class.o
 
 UTILS_LIB = ../utils.a
-UTILS_OBJS = utils_class.o $(ABEND_OBJS)
+UTILS_OBJS = utils_class.o  $(ABEND_OBJS)
 
 $(UTILS_LIB): $(UTILS_OBJS)
-	$(AR) $(ARFLAGS) -r $(UTILS_LIB) $(UTILS_OBJS)
+	$(AR) $(ARFLAGS) -r $(UTILS_LIB) $(UTILS_OBJS) 
 	$(RANLIB) $(UTILS_LIB)
 	
 utils_class.o: utils_class.cpp utils_class.h
 	$(GPP) -c utils_class.cpp
 
 $(ABEND_OBJS):
-		cd $(ABEND_DIR); make; cd ..
+		cd $(ABEND_DIR); make clear; make; cd ..
 
 clear: 
 	$(RM) $(UTILS_LIB); $(RM) $(UTILS_OBJS)
