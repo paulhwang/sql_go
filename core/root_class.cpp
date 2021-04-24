@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 #include "../utils/abend/abend_class.h"
+#include "../utils/queue/list_queue_class.h"
+#include "../utils/queue/queue_entry_class.h"
 #include "root_class.h"
 #include "raw_api_class.h"
 
@@ -16,6 +18,8 @@ RootClass::RootClass() {
 	
 	this->rawApiObject_ = new RawApiClass(this);
 	this->utilsObject_ = new UtilsClass();
+	new ListQueueClass();
+	new QueueEntryClass();
 }
 
 RootClass::~RootClass() {
