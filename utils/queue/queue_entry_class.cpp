@@ -19,5 +19,5 @@ QueueEntryClass::~QueueEntryClass() {
 void QueueEntryClass::clear() {
    	this->next = 0;
    	this->prev = 0;
-   	//this->data = 0;
+   	this->data = 0;
 };

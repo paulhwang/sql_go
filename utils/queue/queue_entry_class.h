@@ -16,7 +16,7 @@ public:
 
     QueueEntryClass *next;
     QueueEntryClass *prev;
-    //Object *data;
+    void *data;
     
     void clear();
 };

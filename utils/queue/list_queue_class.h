@@ -9,12 +9,21 @@
 #ifndef LIST_QUEUE_CLASS_H
 #define LIST_QUEUE_CLASS_H
 
+class QueueEntryClass;
+
 class ListQueueClass {
 public:
 	ListQueueClass();
 	~ListQueueClass();
 
 private:
+	int length_;
+    QueueEntryClass *head_;
+    QueueEntryClass *tail_;
+    int maxLength_;
+
+	void enqueue_(QueueEntryClass *entry_val);
+	QueueEntryClass *dequeue_();
 
 	const char *objectName() { return "ListQueueClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }
