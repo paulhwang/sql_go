@@ -84,7 +84,7 @@ void ListQueueClass::abendQueue_(const char *msg_val) {
 
     if (this->length_ == 0) {
         if ((this->head_ != 0) || (this->tail_ != 0)) {
-            //this->abend("abendQueue_", msg_val + " length_ == 0");
+            this->abend("abendQueue_", msg_val /*+ " length_ == 0"*/);
         }
         return;
     }
@@ -97,7 +97,7 @@ void ListQueueClass::abendQueue_(const char *msg_val) {
     }
 
     if (length != this->length_) {
-        //this->abend("abendQueue_", msg_val + " from head: bad length");
+        this->abend("abendQueue_", msg_val /*+ " from head: bad length"*/);
     }
 
     length = 0;
@@ -107,7 +107,7 @@ void ListQueueClass::abendQueue_(const char *msg_val) {
         entry = entry->prev;
     }
     if (length != this->length_) {
-       //this_abend("abendQueue_", msg_val + " from tail: bad length");
+       this->abend("abendQueue_", msg_val /*+ " from tail: bad length"*/);
     }
 }
 
