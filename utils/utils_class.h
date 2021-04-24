@@ -16,7 +16,10 @@ public:
 	UtilsClass();
 	~UtilsClass();
 
+	AbendClass* abendObject() { return this->abendObject_; }
+
 private:
+	AbendClass* abendObject_;
 };
 
 #endif

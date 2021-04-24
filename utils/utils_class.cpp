@@ -8,10 +8,11 @@
 
 #include <stdio.h>
 #include "utils_class.h"
-#include "abend/abend_class.h"
 
 UtilsClass::UtilsClass() {
 	printf("UtilsClass\n");
+
+	this->abendObject_ = new AbendClass();
 }
 
 UtilsClass::~UtilsClass() {
