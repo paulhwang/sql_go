@@ -24,6 +24,8 @@ private:
 
 	void enqueue_(QueueEntryClass *entry_val);
 	QueueEntryClass *dequeue_();
+	void flush_();
+	void abendQueue_(const char *msg_val);
 
 	const char *objectName() { return "ListQueueClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }
