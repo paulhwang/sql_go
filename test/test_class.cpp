@@ -12,23 +12,31 @@
 #include "../core/raw_api_class.h"
 
 TestClass::TestClass(RootClass *root_class_val) {
-	printf("TestClass\n");
 	this->rootClass_ = root_class_val;
 
-	this->abendObject()->log("this","case");
-	AbendClass::sLog("that","cases");
-
-	//this->abendObject()->abend("abend", "ddd");
-	//AbendClass::sAbend("abend", "ssss");
+	this->debug(true, "TestClass", "init");
 }
 
 TestClass::~TestClass() {
 }
 
 void TestClass::doTest() {
-	printf("doTest\n");
+	this->debug(true, "doTest", "init");
 
 	this->rootClass_->rawApiObject()->sqlite3Open("go_users", &this->userSqlite3_);
 
 }
+
+void TestClass::logIt(const char *s0, const char *s1) {
+	if (this->debugSwitchOn_) {
+		AbendClass::sLog(s0, s1);
+	}
+}
+
+void TestClass::abendIt(const char *s0, const char *s1) {
+	if (this->debugSwitchOn_) {
+		AbendClass::sAbend(s0, s1);
+	}
+}
+
 
