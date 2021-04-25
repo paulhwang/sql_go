@@ -8,7 +8,8 @@
 
 include Makefile.inc
 
-SERVER = sqlgo
+TARGET_DIR = target
+SERVER = $(TARGET_DIR)/sqlgo
 
 MAIN_DIR = main
 MAIN_OBJS = $(MAIN_DIR)/main.o

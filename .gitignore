@@ -1,6 +1,7 @@
 *.o
 *.a
-sqlgo
-db
+target/
+db/
+
 
 
