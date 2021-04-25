@@ -21,7 +21,7 @@ queue_entry_class.o:	queue_entry_class.cpp queue_entry_class.h
 list_queue_class.o:	list_queue_class.cpp list_queue_class.h
 	$(GPP) -c list_queue_class.cpp
 
-clear: 
+clean: 
 	$(RM) $(QUEUE_OBJS)
 
 

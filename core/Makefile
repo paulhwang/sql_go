@@ -21,6 +21,6 @@ root_class.o:	root_class.cpp root_class.h
 raw_api_class.o:	raw_api_class.cpp raw_api_class.h
 	$(GPP) -c raw_api_class.cpp
 
-clear: 
+clean: 
 	$(RM) $(CORE_LIB); $(RM) $(CORE_OBJS)
 

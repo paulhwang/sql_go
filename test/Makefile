@@ -18,6 +18,6 @@ $(TEST_LIB): $(TEST_OBJS)
 test_class.o:	test_class.cpp test_class.h
 	$(GPP) -c test_class.cpp
 
-clear: 
+clean: 
 	$(RM) $(TEST_LIB); $(RM) $(TEST_OBJS)
 

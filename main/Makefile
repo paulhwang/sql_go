@@ -6,14 +6,20 @@
 #################################################################################
 ##
 
-include ../../Makefile.inc
+include ../Makefile.inc
 
-OBJS = abend_class.o
+MAIN_OBJS = main.o  
 
-abend_class.o:	abend_class.cpp abend_class.h
-	$(GPP) -c abend_class.cpp
+main.o: main.cpp 
+	$(GPP) -c main.cpp
+
+
+#all: $(MAIN_OBJS)
+
+#cpp.o:
+#	$(GPP) -c $< -o $@ -lpthread -ldl
 
 clean: 
-	$(RM) $(OBJS)
+	$(RM) $(MAIN_OBJS)
 
 

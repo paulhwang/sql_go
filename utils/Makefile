@@ -31,6 +31,6 @@ $(ABEND_OBJS):
 $(QUEUE_OBJS):
 		cd $(QUEUE_DIR); make clear; make; cd ..
 
-clear: 
+clean: 
 	$(RM) $(UTILS_LIB); $(RM) $(UTILS_OBJS)
 

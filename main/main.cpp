@@ -7,8 +7,8 @@
  */
 
 #include <stdio.h>
-#include "core/root_class.h"
-#include "test/test_class.h"
+#include "../core/root_class.h"
+#include "../test/test_class.h"
 
 RootClass *root;
 TestClass *test;

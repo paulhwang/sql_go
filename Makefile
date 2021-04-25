@@ -10,6 +10,9 @@ include Makefile.inc
 
 SERVER = sqlgo
 
+MAIN_DIR = main
+MAIN_OBJS = $(MAIN_DIR)/main.o
+
 SQLITE_DIR = sqlite
 SQLITE_OBJS = $(SQLITE_DIR)/sqlite3.o
 
@@ -22,26 +25,30 @@ TEST_LIB = test.a
 UTILS_DIR = utils
 UTILS_LIB = utils.a
 
-ALL_LIBS = $(CORE_LIB) $(TEST_LIB) $(UTILS_LIB)
-ALL_OBJS = main.o $(ALL_LIBS) 
+MY_LIBS_OBJS = $(MAIN_OBJS) $(CORE_LIB) $(TEST_LIB) $(UTILS_LIB) 
+IMPORT_LIBS_OBJS = $(SQLITE_OBJS) 
+ALL_LIBS_OBJS = $(MY_LIBS_OBJS) $(IMPORT_LIBS_OBJS)
 
 clean_make:
-	make clear; make all; ./$(SERVER)
+	make clean; make all; ./$(SERVER)
 
 all:	$(SERVER)
 
-$(SERVER): $(ALL_OBJS) $(SQLITE_OBJS)
-		$(GPP) $(ALL_OBJS) $(SQLITE_OBJS) -o $(SERVER) -lpthread -ldl
+$(SERVER): $(ALL_LIBS_OBJS)
+		$(GPP) $(ALL_LIBS_OBJS) -o $(SERVER) -lpthread -ldl
+
+$(MAIN_OBJS):	
+		cd $(MAIN_DIR); make clean; make; cd ..
 
 $(CORE_LIB):	
-		cd $(CORE_DIR); make clear; make; cd ..
+		cd $(CORE_DIR); make clean; make; cd ..
 
 $(TEST_LIB):	
-		cd $(TEST_DIR); make clear; make; cd ..
+		cd $(TEST_DIR); make clean; make; cd ..
 
 $(UTILS_LIB):	
-		cd $(UTILS_DIR); make clear; make; cd ..
+		cd $(UTILS_DIR); make clean; make; cd ..
 
-clear: 
-	$(RM) $(SERVER); $(RM) $(ALL_OBJS)
+clean: 
+	$(RM) $(SERVER); $(RM) $(MY_LIBS_OBJS)
 
