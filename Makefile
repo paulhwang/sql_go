@@ -25,6 +25,8 @@ UTILS_LIB = utils.a
 ALL_LIBS = $(CORE_LIB) $(TEST_LIB) $(UTILS_LIB)
 ALL_OBJS = main.o $(ALL_LIBS) 
 
+clean_make:
+	make clear; make all; ./$(SERVER)
 
 all:	$(SERVER)
 

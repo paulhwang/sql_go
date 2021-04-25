@@ -9,7 +9,7 @@ LD		= g++
 LDFLAGS	=
 
 AR		= ar
-ARFLAGS	=
+ARFLAGS	= 
 
 RANLIB	= ranlib
 
