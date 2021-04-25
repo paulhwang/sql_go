@@ -45,7 +45,7 @@ $(TEST_LIB):
 		cd $(TEST_DIR); make clean; make; cd ..
 
 $(CORE_LIB):	
-		cd $(CORE_DIR); make clean; make; cd ..
+		cd $(CORE_DIR); make; cd ..
 
 $(UTILS_LIB):	
 		cd $(UTILS_DIR); make clean; make; cd ..

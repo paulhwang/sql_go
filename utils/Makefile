@@ -18,6 +18,11 @@ QUEUE_OBJS = $(QUEUE_DIR)/queue_entry_class.o $(QUEUE_DIR)/list_queue_class.o
 UTILS_LIB = utils.a
 UTILS_OBJS = utils_class.o  $(ABEND_OBJS) $(QUEUE_OBJS)
 
+clean_make:
+	make clean; make all
+
+all: $(UTILS_LIB)
+
 $(UTILS_LIB): $(UTILS_OBJS)
 	$(AR) $(ARFLAGS) -r $(UTILS_LIB) $(UTILS_OBJS)
 	$(RANLIB) $(UTILS_LIB)

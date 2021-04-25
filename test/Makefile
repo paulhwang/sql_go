@@ -11,6 +11,11 @@ include ../Makefile.inc
 TEST_LIB = test.a
 TEST_OBJS = test_class.o
 
+clean_make:
+	make clean; make all
+
+all: $(TEST_LIB)
+
 $(TEST_LIB): $(TEST_OBJS)
 	$(AR) $(ARFLAGS) -r $(TEST_LIB) $(TEST_OBJS)
 	$(RANLIB) $(TEST_LIB)
