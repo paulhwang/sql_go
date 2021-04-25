@@ -31,10 +31,10 @@ utils_class.o: utils_class.cpp utils_class.h
 	$(GPP) -c utils_class.cpp
 
 $(ABEND_OBJS):
-		cd $(ABEND_DIR); make clear; make; cd ..
+		cd $(ABEND_DIR); make clean; make; cd ..
 
 $(QUEUE_OBJS):
-		cd $(QUEUE_DIR); make clear; make; cd ..
+		cd $(QUEUE_DIR); make clean; make; cd ..
 
 clean: 
 	$(RM) $(UTILS_LIB); $(RM) $(UTILS_OBJS)
