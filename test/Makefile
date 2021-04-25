@@ -8,7 +8,7 @@
 
 include ../Makefile.inc
 
-TEST_LIB = ../test.a
+TEST_LIB = test.a
 TEST_OBJS = test_class.o
 
 $(TEST_LIB): $(TEST_OBJS)

@@ -8,9 +8,11 @@
 
 include ../../Makefile.inc
 
-QUEUE_LIB = ../queue.a
+QUEUE_LIB = queue.a
 QUEUE_OBJS = queue_entry_class.o list_queue_class.o
 
+all:	$(QUEUE_LIB) $(QUEUE_OBJS)
+	
 $(QUEUE_LIB): $(QUEUE_OBJS)
 	$(AR) $(ARFLAGS) -r $(QUEUE_LIB) $(QUEUE_OBJS)
 	$(RANLIB) $(QUEUE_LIB)

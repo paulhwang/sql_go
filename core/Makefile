@@ -8,7 +8,7 @@
 
 include ../Makefile.inc
 
-CORE_LIB = ../core.a
+CORE_LIB = core.a
 CORE_OBJS = root_class.o raw_api_class.o
 
 $(CORE_LIB): $(CORE_OBJS)
