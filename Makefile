@@ -14,7 +14,7 @@ SQL_SERVER = $(TARGET_DIR)/sqlgo
 MAIN_DIR = main_dir
 MAIN_OBJS = $(MAIN_DIR)/main.o
 
-CORE_DIR = core
+CORE_DIR = sql_server_dir
 CORE_LIB = $(CORE_DIR)/core.a
 
 TEST_DIR = test_dir

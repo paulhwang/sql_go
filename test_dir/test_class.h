@@ -10,7 +10,7 @@
 #define TEST_CLASS_H
 
 #include "../sqlite_dir/sqlite3.h"
-#include "../core/root_class.h"
+#include "../sql_server_dir/root_class.h"
 
 class TestClass {
 public:
