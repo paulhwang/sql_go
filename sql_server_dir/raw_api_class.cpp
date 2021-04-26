@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "../utils_dir/utils_class.h"
 #include "../sqlite_dir/sqlite3.h"
-#include "root_class.h"
+#include "sql_server_root_class.h"
 #include "raw_api_class.h"
 
 RawApiClass::RawApiClass(RootClass *root_object_val) {

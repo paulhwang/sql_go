@@ -11,7 +11,7 @@
 #include "../utils_dir/abend_dir/abend_class.h"
 #include "../utils_dir/queue_mgr_dir/list_queue_class.h"
 #include "../utils_dir/queue_mgr_dir/queue_entry_class.h"
-#include "root_class.h"
+#include "sql_server_root_class.h"
 #include "raw_api_class.h"
 
 RootClass::RootClass() {

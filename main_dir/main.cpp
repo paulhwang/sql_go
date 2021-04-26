@@ -7,7 +7,7 @@
  */
 
 #include <stdio.h>
-#include "../sql_server_dir/root_class.h"
+#include "../sql_server_dir/sql_server_root_class.h"
 #include "../test_dir/test_class.h"
 
 RootClass *root;
