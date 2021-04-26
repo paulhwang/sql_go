@@ -24,7 +24,7 @@ TestClass::~TestClass() {
 void TestClass::doTest() {
 	this->debug(true, "doTest", "init");
 
-	this->rootClass_->rawApiObject()->sqlite3Open("db/go_users", &this->userSqlite3_);
+	this->rootClass_->rawApiObject()->sqlite3Open("db_dir/go_users", &this->userSqlite3_);
 
 }
 

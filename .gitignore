@@ -1,7 +1,7 @@
 *.o
 *.a
-target/
-db/
+target_dir/
+db_dir/
 
 
 
