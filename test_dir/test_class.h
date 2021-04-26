@@ -14,7 +14,7 @@
 
 class TestClass {
 public:
-	TestClass(RootClass *);
+	TestClass(SqlServerRootClass *);
 	~TestClass();
 	void doTest();
 	sqlite3 *userSqlite3() { return this->userSqlite3_; }
@@ -22,7 +22,7 @@ public:
 	AbendClass* abendObject();
 
 private:
-	RootClass *rootClass_;
+	SqlServerRootClass *rootClass_;
 	sqlite3 *userSqlite3_;
 
 	const char *objectName() { return "TestClass"; }

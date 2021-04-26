@@ -12,7 +12,7 @@
 #include "sql_server_root_class.h"
 #include "raw_api_class.h"
 
-RawApiClass::RawApiClass(RootClass *root_object_val) {
+RawApiClass::RawApiClass(SqlServerRootClass *root_object_val) {
 	this->rootObject_ = root_object_val;
 	this->log("RawApiClass", "init");
 }

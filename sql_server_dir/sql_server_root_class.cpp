@@ -14,8 +14,8 @@
 #include "sql_server_root_class.h"
 #include "raw_api_class.h"
 
-RootClass::RootClass() {
-	this->debug(true, "RootClass", "init");
+SqlServerRootClass::SqlServerRootClass() {
+	this->debug(true, "SqlServerRootClass", "init");
 	
 	this->rawApiObject_ = new RawApiClass(this);
 	this->utilsObject_ = new UtilsClass();
@@ -24,24 +24,25 @@ RootClass::RootClass() {
 	q->enqueue((void *) "hello");
 	q->enqueue((void *) "test queue");
 	char *s = (char *) q->dequeue();
-	this->log("RootClass", s);
+	this->log("SqlServerRootClass", s);
 	s = (char *) q->dequeue();
-	this->log("RootClass", s);
-}
-RootClass::~RootClass() {
+	this->log("SqlServerRootClass", s);
 }
 
-AbendClass *RootClass::abendObject() { return this->utilsObject()->abendObject(); }
-void RootClass::log(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1); }
-void RootClass::abend(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->abendIt(buf, s1); }
+SqlServerRootClass::~SqlServerRootClass() {
+}
 
-void RootClass::logIt(const char *s0, const char *s1) {
+AbendClass *SqlServerRootClass::abendObject() { return this->utilsObject()->abendObject(); }
+void SqlServerRootClass::log(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1); }
+void SqlServerRootClass::abend(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->abendIt(buf, s1); }
+
+void SqlServerRootClass::logIt(const char *s0, const char *s1) {
 	if (this->debugSwitchOn_) {
 		AbendClass::sLog(s0, s1);
 	}
 }
 
-void RootClass::abendIt(const char *s0, const char *s1) {
+void SqlServerRootClass::abendIt(const char *s0, const char *s1) {
 	if (this->debugSwitchOn_) {
 		AbendClass::sAbend(s0, s1);
 	}

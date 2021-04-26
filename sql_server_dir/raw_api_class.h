@@ -11,11 +11,11 @@
 
 #include "../sqlite_dir/sqlite3.h"
 
-class RootClass;
+class SqlServerRootClass;
 
 class RawApiClass {
 public:
-	RawApiClass(RootClass *root_object_val);
+	RawApiClass(SqlServerRootClass *root_object_val);
 	~RawApiClass();
 
 	int sqlite3Open(
@@ -51,8 +51,8 @@ public:
 private:
 	const char *objectName() { return "RawApiClass"; }
 
-	RootClass *rootObject_;
-	RootClass *rootObject() { return this->rootObject_; }
+	SqlServerRootClass *rootObject_;
+	SqlServerRootClass *rootObject() { return this->rootObject_; }
 
     void debug(bool on_off_val, char *s0, char *s1);
     void log(const char *s0, const char *s1);

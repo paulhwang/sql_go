@@ -12,7 +12,7 @@
 #include "../sql_server_dir/raw_api_class.h"
 #include "test_class.h"
 
-TestClass::TestClass(RootClass *root_class_val) {
+TestClass::TestClass(SqlServerRootClass *root_class_val) {
 	this->rootClass_ = root_class_val;
 
 	this->debug(true, "TestClass", "init");
