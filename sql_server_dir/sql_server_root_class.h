@@ -11,6 +11,7 @@
 
 class UtilsClass;
 class AbendClass;
+class ThreadMgrClass;
 class SqlServerRawApiClass;
 
 class SqlServerRootClass {
@@ -18,6 +19,7 @@ public:
 	SqlServerRootClass();
 	~SqlServerRootClass();
 
+    ThreadMgrClass *threadMgrObject_;
 	SqlServerRawApiClass *rawApiObject() { return this->rawApiObject_; }
 	UtilsClass *utilsObject() { return this->utilsObject_; }
 

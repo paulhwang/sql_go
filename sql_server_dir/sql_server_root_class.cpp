@@ -32,6 +32,7 @@ SqlServerRootClass::SqlServerRootClass() {
     this->debugSwitchOn_ = true;
     this->debug(true, "SqlServerRootClass", "init");
     
+	this->threadMgrObject_ = new ThreadMgrClass();
 	this->rawApiObject_ = new SqlServerRawApiClass(this);
 	this->utilsObject_ = new UtilsClass();
 	
@@ -44,9 +45,8 @@ SqlServerRootClass::SqlServerRootClass() {
 	this->log("SqlServerRootClass", s);
 
 	new ListMgrClass();
-	ThreadMgrClass *thread_mgr = new ThreadMgrClass();
-	thread_mgr->createThreadObject("aaa", func1);
-	new ThreadEntityClass("SqlServerRootClass", func2);
+	this->threadMgrObject_->createThreadObject("aaa", func1);
+	this->threadMgrObject_->createThreadObject("SqlServerRootClass", func2);
 }
 
 SqlServerRootClass::~SqlServerRootClass() {
