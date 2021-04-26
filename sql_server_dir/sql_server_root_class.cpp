@@ -17,7 +17,7 @@
 SqlServerRootClass::SqlServerRootClass() {
 	this->debug(true, "SqlServerRootClass", "init");
 	
-	this->rawApiObject_ = new RawApiClass(this);
+	this->rawApiObject_ = new SqlServerRawApiClass(this);
 	this->utilsObject_ = new UtilsClass();
 	
 	ListQueueClass *q = new ListQueueClass(true, 0);

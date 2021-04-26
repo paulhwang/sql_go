@@ -11,19 +11,19 @@
 
 class UtilsClass;
 class AbendClass;
-class RawApiClass;
+class SqlServerRawApiClass;
 
 class SqlServerRootClass {
 public:
 	SqlServerRootClass();
 	~SqlServerRootClass();
 
-	RawApiClass *rawApiObject() { return this->rawApiObject_; }
+	SqlServerRawApiClass *rawApiObject() { return this->rawApiObject_; }
 	UtilsClass *utilsObject() { return this->utilsObject_; }
 	AbendClass* abendObject();
 
 private:
-	RawApiClass *rawApiObject_;
+	SqlServerRawApiClass *rawApiObject_;
 	UtilsClass *utilsObject_;
 
 	const char *objectName() { return "SqlServerRootClass"; }

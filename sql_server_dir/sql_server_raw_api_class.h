@@ -13,10 +13,10 @@
 
 class SqlServerRootClass;
 
-class RawApiClass {
+class SqlServerRawApiClass {
 public:
-	RawApiClass(SqlServerRootClass *root_object_val);
-	~RawApiClass();
+	SqlServerRawApiClass(SqlServerRootClass *root_object_val);
+	~SqlServerRawApiClass();
 
 	int sqlite3Open(
 		const char *filename,   /* Database filename (UTF-8) */
@@ -49,7 +49,7 @@ public:
 		);
 
 private:
-	const char *objectName() { return "RawApiClass"; }
+	const char *objectName() { return "SqlServerRawApiClass"; }
 
 	SqlServerRootClass *rootObject_;
 	SqlServerRootClass *rootObject() { return this->rootObject_; }
