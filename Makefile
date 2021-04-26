@@ -9,7 +9,7 @@
 include Makefile.inc
 
 TARGET_DIR = target_dir
-SQL_SERVER = $(TARGET_DIR)/sqlgo
+SQL_SERVER = $(TARGET_DIR)/sql_server
 
 MAIN_DIR = main_dir
 MAIN_OBJS = $(MAIN_DIR)/main.o
@@ -31,7 +31,7 @@ IMPORT_LIBS_OBJS = $(SQLITE_OBJS)
 ALL_LIBS_OBJS = $(MY_LIBS_OBJS) $(IMPORT_LIBS_OBJS)
 
 clean_make:
-	make clean; make all; ./$(SQL_SERVER)
+	make clean; make all
 
 all:	$(SQL_SERVER)
 
