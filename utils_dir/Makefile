@@ -11,6 +11,9 @@ include ../Makefile.inc
 ABEND_DIR = abend_dir
 ABEND_OBJS = $(ABEND_DIR)/abend_class.o
 
+LIST_MGR_DIR = list_mgr_dir
+LIST_MGR_OBJS = $(LIST_MGR_DIR)/list_entry_class.o $(LIST_MGR_DIR)/list_mgr_class.o 
+
 QUEUE_MGR_DIR = queue_mgr_dir
 QUEUE_MGR_OBJS = $(QUEUE_MGR_DIR)/queue_entry_class.o $(QUEUE_MGR_DIR)/list_queue_class.o 
 
@@ -18,7 +21,7 @@ THREAD_MGR_DIR = thread_mgr_dir
 THREAD_MGR_OBJS = $(THREAD_MGR_DIR)/thread_entity_class.o $(THREAD_MGR_DIR)/thread_mgr_class.o 
 
 UTILS_LIB = utils_lib.a
-UTILS_OBJS = utils_class.o  $(ABEND_OBJS) $(QUEUE_MGR_OBJS) $(THREAD_MGR_OBJS)
+UTILS_OBJS = utils_class.o  $(ABEND_OBJS) $(LIST_MGR_OBJS) $(QUEUE_MGR_OBJS) $(THREAD_MGR_OBJS)
 
 clean_make:
 	make clean; make all
@@ -34,6 +37,9 @@ utils_class.o: utils_class.cpp utils_class.h
 
 $(ABEND_OBJS):
 		cd $(ABEND_DIR); make clean; make; cd ..
+
+$(LIST_MGR_OBJS):
+		cd $(LIST_MGR_DIR); make clean; make; cd ..
 
 $(QUEUE_MGR_OBJS):
 		cd $(QUEUE_MGR_DIR); make clean; make; cd ..
