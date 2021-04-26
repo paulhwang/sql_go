@@ -17,7 +17,7 @@ QUEUE_MGR_OBJS = $(QUEUE_MGR_DIR)/queue_entry_class.o $(QUEUE_MGR_DIR)/list_queu
 THREAD_MGR_DIR = thread_mgr_dir
 THREAD_MGR_OBJS = $(THREAD_MGR_DIR)/thread_entity_class.o $(THREAD_MGR_DIR)/thread_mgr_class.o 
 
-UTILS_LIB = utils.a
+UTILS_LIB = utils_lib.a
 UTILS_OBJS = utils_class.o  $(ABEND_OBJS) $(QUEUE_MGR_OBJS) $(THREAD_MGR_OBJS)
 
 clean_make:

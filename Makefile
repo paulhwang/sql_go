@@ -21,7 +21,7 @@ TEST_DIR = test
 TEST_LIB = $(TEST_DIR)/test.a
 
 UTILS_DIR = utils
-UTILS_LIB = $(UTILS_DIR)/utils.a
+UTILS_LIB = $(UTILS_DIR)/utils_lib.a
 
 SQLITE_DIR = sqlite
 SQLITE_OBJS = $(SQLITE_DIR)/sqlite3.o
