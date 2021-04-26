@@ -8,7 +8,7 @@
 
 include ../../Makefile.inc
 
-QUEUE_LIB = queue.a
+QUEUE_LIB = queue_lib.a
 QUEUE_OBJS = queue_entry_class.o list_queue_class.o
 
 clean_make:
