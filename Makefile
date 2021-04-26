@@ -11,7 +11,7 @@ include Makefile.inc
 TARGET_DIR = target
 SQL_SERVER = $(TARGET_DIR)/sqlgo
 
-MAIN_DIR = main
+MAIN_DIR = main_dir
 MAIN_OBJS = $(MAIN_DIR)/main.o
 
 CORE_DIR = core
