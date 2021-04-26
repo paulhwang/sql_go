@@ -14,8 +14,8 @@ SQL_SERVER = $(TARGET_DIR)/sqlgo
 MAIN_DIR = main_dir
 MAIN_OBJS = $(MAIN_DIR)/main.o
 
-CORE_DIR = sql_server_dir
-CORE_LIB = $(CORE_DIR)/core.a
+SQL_SERVER_DIR = sql_server_dir
+SQL_SERVER_LIB = $(SQL_SERVER_DIR)/sql_server_lib.a
 
 TEST_DIR = test_dir
 TEST_LIB = $(TEST_DIR)/test.a
@@ -26,7 +26,7 @@ UTILS_LIB = $(UTILS_DIR)/utils_lib.a
 SQLITE_DIR = sqlite_dir
 SQLITE_OBJS = $(SQLITE_DIR)/sqlite3.o
 
-MY_LIBS_OBJS = $(MAIN_OBJS) $(CORE_LIB) $(TEST_LIB) $(UTILS_LIB) 
+MY_LIBS_OBJS = $(MAIN_OBJS) $(SQL_SERVER_LIB) $(TEST_LIB) $(UTILS_LIB) 
 IMPORT_LIBS_OBJS = $(SQLITE_OBJS) 
 ALL_LIBS_OBJS = $(MY_LIBS_OBJS) $(IMPORT_LIBS_OBJS)
 
@@ -44,8 +44,8 @@ $(MAIN_OBJS):
 $(TEST_LIB):	
 		cd $(TEST_DIR); make clean; make; cd ..
 
-$(CORE_LIB):	
-		cd $(CORE_DIR); make clean; make; cd ..
+$(SQL_SERVER_LIB):	
+		cd $(SQL_SERVER_DIR); make clean; make; cd ..
 
 $(UTILS_LIB):	
 		cd $(UTILS_DIR); make clean; make; cd ..
