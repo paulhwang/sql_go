@@ -17,7 +17,7 @@ MAIN_OBJS = $(MAIN_DIR)/main.o
 CORE_DIR = core
 CORE_LIB = $(CORE_DIR)/core.a
 
-TEST_DIR = test
+TEST_DIR = test_dir
 TEST_LIB = $(TEST_DIR)/test.a
 
 UTILS_DIR = utils_dir
