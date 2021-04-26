@@ -21,6 +21,7 @@ public:
     void enqueue(void *data_val);
     void *dequeue();
     void flush();
+    //void setPendingThread(Thread *thread_val);
 
 private:
 	int length_;
@@ -36,6 +37,7 @@ private:
 	void enqueue_(QueueEntryClass *entry_val);
 	QueueEntryClass *dequeue_();
 	void flush_();
+    //void setPendingThread_(Thread *thread_val);
     void interruptPendingThread();
     void interruptPendingThread_();
     void abendQueue(const char *msg_val);

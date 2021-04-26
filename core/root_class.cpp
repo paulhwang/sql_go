@@ -18,6 +18,7 @@ RootClass::RootClass() {
 	
 	this->rawApiObject_ = new RawApiClass(this);
 	this->utilsObject_ = new UtilsClass();
+	
 	ListQueueClass *q = new ListQueueClass(true, 0);
 	q->enqueue((void *) "hello");
 	q->enqueue((void *) "test queue");

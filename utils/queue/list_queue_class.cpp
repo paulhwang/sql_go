@@ -142,7 +142,24 @@ void ListQueueClass::flush_() {
         this->abend("flush_", "length is not 0");
     }
 }
-    
+
+/*
+void ListQueueClass::setPendingThread(Thread *thread_val) {
+    pthread_mutex_lock(&this->pendingThreadMutex_);
+    this_setPendingThread_(thread_val);
+    pthread_mutex_unlock(&this->pendingThreadMutex_);
+}
+
+void ListQueueClass::setPendingThread_(Thread *thread_val) {
+    for (int i = 0; i < this->maxPendingThreadCount_; i++) {
+        if (this->pendingThreadArray_[i] == null) {
+            this->pendingThreadArray_[i] = thread_val;
+            return;
+        }
+    }
+}
+*/
+
 void ListQueueClass::interruptPendingThread() {
     pthread_mutex_lock(&this->pendingThreadMutex_);
     this->interruptPendingThread_();
