@@ -11,6 +11,8 @@
 #include "list_mgr_class.h"
 
 ListMgrClass::ListMgrClass() {
+    this->debug(true, "ListMgrClass", "init");
+    memset(this, 0, sizeof (*this));
 
 }
 

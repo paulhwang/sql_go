@@ -12,12 +12,16 @@
 #include "../utils_dir/abend_dir/abend_class.h"
 #include "../utils_dir/queue_mgr_dir/list_queue_class.h"
 #include "../utils_dir/queue_mgr_dir/queue_entry_class.h"
+#include "../utils_dir/list_mgr_dir/list_mgr_class.h"
+#include "../utils_dir/thread_mgr_dir/thread_entity_class.h"
+#include "../utils_dir/thread_mgr_dir/thread_mgr_class.h"
 #include "sql_server_root_class.h"
 #include "sql_server_raw_api_class.h"
 
 SqlServerRootClass::SqlServerRootClass() {
 	this->debug(true, "SqlServerRootClass", "init");
-	
+    memset(this, 0, sizeof (*this));
+    
 	this->rawApiObject_ = new SqlServerRawApiClass(this);
 	this->utilsObject_ = new UtilsClass();
 	
@@ -28,6 +32,10 @@ SqlServerRootClass::SqlServerRootClass() {
 	this->log("SqlServerRootClass", s);
 	s = (char *) q->dequeue();
 	this->log("SqlServerRootClass", s);
+
+	new ListMgrClass();
+	new ThreadMgrClass();
+	new ThreadEntityClass();
 }
 
 SqlServerRootClass::~SqlServerRootClass() {

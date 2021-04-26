@@ -13,9 +13,9 @@
 #include "test_class.h"
 
 TestClass::TestClass(SqlServerRootClass *root_class_val) {
-	this->rootClass_ = root_class_val;
+    this->debug(true, "TestClass", "init");
+    this->rootClass_ = root_class_val;
 
-	this->debug(true, "TestClass", "init");
 }
 
 TestClass::~TestClass() {
