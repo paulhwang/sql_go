@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include "../utils_dir/utils_class.h"
 #include "../utils_dir/abend_dir/abend_class.h"
-#include "../sql_server_dir/raw_api_class.h"
+#include "../sql_server_dir/sql_server_raw_api_class.h"
 #include "test_class.h"
 
 TestClass::TestClass(SqlServerRootClass *root_class_val) {

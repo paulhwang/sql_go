@@ -12,7 +12,7 @@
 #include "../utils_dir/queue_mgr_dir/list_queue_class.h"
 #include "../utils_dir/queue_mgr_dir/queue_entry_class.h"
 #include "sql_server_root_class.h"
-#include "raw_api_class.h"
+#include "sql_server_raw_api_class.h"
 
 SqlServerRootClass::SqlServerRootClass() {
 	this->debug(true, "SqlServerRootClass", "init");

@@ -10,7 +10,7 @@
 #include "../utils_dir/utils_class.h"
 #include "../sqlite_dir/sqlite3.h"
 #include "sql_server_root_class.h"
-#include "raw_api_class.h"
+#include "sql_server_raw_api_class.h"
 
 RawApiClass::RawApiClass(SqlServerRootClass *root_object_val) {
 	this->rootObject_ = root_object_val;
