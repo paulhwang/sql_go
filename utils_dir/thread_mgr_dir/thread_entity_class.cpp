@@ -10,8 +10,9 @@
 #include "thread_entity_class.h"
 
 ThreadEntityClass::ThreadEntityClass() {
-    this->debug(true, "ThreadEntityClass", "init");
     memset(this, 0, sizeof (*this));
+    this->debugSwitchOn_ = true;
+    this->debug(true, "ThreadEntityClass", "init");
 
 }
 

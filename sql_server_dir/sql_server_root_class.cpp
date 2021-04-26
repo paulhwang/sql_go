@@ -19,8 +19,9 @@
 #include "sql_server_raw_api_class.h"
 
 SqlServerRootClass::SqlServerRootClass() {
-	this->debug(true, "SqlServerRootClass", "init");
     memset(this, 0, sizeof (*this));
+    this->debugSwitchOn_ = true;
+    this->debug(true, "SqlServerRootClass", "init");
     
 	this->rawApiObject_ = new SqlServerRawApiClass(this);
 	this->utilsObject_ = new UtilsClass();

@@ -10,8 +10,9 @@
 #include "thread_mgr_class.h"
 
 ThreadMgrClass::ThreadMgrClass() {
-    this->debug(true, "ThreadMgrClass", "init");
     memset(this, 0, sizeof (*this));
+    this->debugSwitchOn_ = true;
+    this->debug(true, "ThreadMgrClass", "init");
 
 }
 
