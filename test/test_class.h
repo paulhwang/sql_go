@@ -9,7 +9,7 @@
 #ifndef TEST_CLASS_H
 #define TEST_CLASS_H
 
-#include "../sqlite/sqlite3.h"
+#include "../sqlite_dir/sqlite3.h"
 #include "../core/root_class.h"
 
 class TestClass {

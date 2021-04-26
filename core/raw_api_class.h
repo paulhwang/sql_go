@@ -9,7 +9,7 @@
 #ifndef RAW_API_CLASS_H
 #define RAW_API_CLASS_H
 
-#include "../sqlite/sqlite3.h"
+#include "../sqlite_dir/sqlite3.h"
 
 class RootClass;
 
