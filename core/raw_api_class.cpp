@@ -7,7 +7,7 @@
  */
 
 #include <stdio.h>
-#include "../utils/utils_class.h"
+#include "../utils_dir/utils_class.h"
 #include "../sqlite/sqlite3.h"
 #include "root_class.h"
 #include "raw_api_class.h"

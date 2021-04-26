@@ -7,10 +7,10 @@
  */
 
 #include <stdio.h>
-#include "../utils/utils_class.h"
-#include "../utils/abend_dir/abend_class.h"
-#include "test_class.h"
+#include "../utils_dir/utils_class.h"
+#include "../utils_dir/abend_dir/abend_class.h"
 #include "../core/raw_api_class.h"
+#include "test_class.h"
 
 TestClass::TestClass(RootClass *root_class_val) {
 	this->rootClass_ = root_class_val;
@@ -28,6 +28,9 @@ void TestClass::doTest() {
 
 }
 
+AbendClass *TestClass::abendObject() { return this->utilsObject()->abendObject(); }
+void TestClass::log(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1); }
+void TestClass::abend(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->abendIt(buf, s1); }
 void TestClass::logIt(const char *s0, const char *s1) {
 	if (this->debugSwitchOn_) {
 		AbendClass::sLog(s0, s1);

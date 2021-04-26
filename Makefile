@@ -20,7 +20,7 @@ CORE_LIB = $(CORE_DIR)/core.a
 TEST_DIR = test
 TEST_LIB = $(TEST_DIR)/test.a
 
-UTILS_DIR = utils
+UTILS_DIR = utils_dir
 UTILS_LIB = $(UTILS_DIR)/utils_lib.a
 
 SQLITE_DIR = sqlite

@@ -7,9 +7,10 @@
  */
 
 #include <stdio.h>
-#include "../utils/abend_dir/abend_class.h"
-#include "../utils/queue_mgr_dir/list_queue_class.h"
-#include "../utils/queue_mgr_dir/queue_entry_class.h"
+#include "../utils_dir/utils_class.h"
+#include "../utils_dir/abend_dir/abend_class.h"
+#include "../utils_dir/queue_mgr_dir/list_queue_class.h"
+#include "../utils_dir/queue_mgr_dir/queue_entry_class.h"
 #include "root_class.h"
 #include "raw_api_class.h"
 
@@ -29,6 +30,10 @@ RootClass::RootClass() {
 }
 RootClass::~RootClass() {
 }
+
+AbendClass *RootClass::abendObject() { return this->utilsObject()->abendObject(); }
+void RootClass::log(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1); }
+void RootClass::abend(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->abendIt(buf, s1); }
 
 void RootClass::logIt(const char *s0, const char *s1) {
 	if (this->debugSwitchOn_) {
