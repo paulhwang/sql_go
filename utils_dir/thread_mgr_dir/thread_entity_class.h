@@ -13,7 +13,7 @@
 
 class ThreadEntityClass {
 public:
-	ThreadEntityClass(char *thread_name_val, void *calling_object_val);
+	ThreadEntityClass(char *thread_name_val, void *(*start_routine_val)(void *));
 	~ThreadEntityClass();
 
 private:
