@@ -6,21 +6,57 @@
  ******************************************************************************
  */
 
-#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "../phwang.h"
 #include "../abend/abend_class.h"
 #include "list_queue_class.h"
 #include "queue_entry_class.h"
 
-ListQueueClass::ListQueueClass() {
+#define MAX_PENDING_THREAD_COUNT 5;
+#define DEFAULT_MAX_QUEUE_LENGTH 1000;
+
+ListQueueClass::ListQueueClass(bool do_suspend_val, int max_length_val) {
 	this->debug(true, "ListQueueClass", "init");
-	this->length_ = 0;
-	this->head_ = 0;
-	this->tail_ = 0;
+    memset(this, 0, sizeof (*this));
+
+    this->maxLength_ = max_length_val;
+    this->abendQueueIsOn_ = true;
+    this->maxPendingThreadCount_ = MAX_PENDING_THREAD_COUNT;
+
+    //this->pendingThreadArray_ = new Thread[this->maxPendingThreadCount_];
+
+    if (pthread_mutex_init(&this->queueMutex_, NULL) != 0) {
+        this->abend("QueueClass", "pthread_mutex_init for queueMutex_ fail");
+    }
+
+    if (pthread_mutex_init(&this->pendingThreadMutex_, NULL) != 0) {
+        this->abend("QueueClass", "pthread_mutex_init for pendingThreadMutex_fail");
+    }
+
+    if (this->maxLength_ == 0) {
+        this->maxLength_ = DEFAULT_MAX_QUEUE_LENGTH;
+    }
 }
 
 ListQueueClass::~ListQueueClass() {
 }
 
+
+void ListQueueClass::enqueue(void *data_val) {
+    this->debug(false, "enqueue", (char *) data_val);
+
+    QueueEntryClass *entry = new QueueEntryClass();
+    entry->data = data_val;
+        
+    this->abendQueue("enqueue begin");
+    pthread_mutex_lock(&this->queueMutex_);
+    this->enqueue_(entry);
+    pthread_mutex_unlock(&this->queueMutex_);
+        
+    this->interruptPendingThread();
+    this->abendQueue("enqueue end");
+}
     
 void ListQueueClass::enqueue_(QueueEntryClass *entry_val) {
     if (this->head_ == 0) {
@@ -36,6 +72,27 @@ void ListQueueClass::enqueue_(QueueEntryClass *entry_val) {
         this->tail_->next = entry_val;
         this->tail_ = entry_val;
         this->length_++;
+    }
+}
+
+void *ListQueueClass::dequeue() {
+    QueueEntryClass *entry;
+
+    this->abendQueue("dequeue start");
+    pthread_mutex_lock(&this->queueMutex_);
+    entry = this->dequeue_();
+    pthread_mutex_unlock(&this->queueMutex_);
+    this->abendQueue("dequeue end");
+        
+    if (entry == 0) {
+        return 0;
+    }
+    else {
+        void *data = entry->data;
+        delete entry;
+
+        this->debug(false, "dequeue", (char *)data);
+        return data;
     }
 }
 
@@ -61,6 +118,14 @@ QueueEntryClass *ListQueueClass::dequeue_() {
     return entry;
 }
 
+void ListQueueClass::flush() {
+    this->abendQueue("flush start");
+    pthread_mutex_lock(&this->queueMutex_);
+    this->flush_();
+    pthread_mutex_unlock(&this->queueMutex_);
+    this->abendQueue("flush end");
+}
+
 void ListQueueClass::flush_() {
     QueueEntryClass *entry, *entry_next;
 
@@ -76,6 +141,32 @@ void ListQueueClass::flush_() {
     if (this->length_ != 0) {
         this->abend("flush_", "length is not 0");
     }
+}
+    
+void ListQueueClass::interruptPendingThread() {
+    pthread_mutex_lock(&this->pendingThreadMutex_);
+    this->interruptPendingThread_();
+    pthread_mutex_unlock(&this->pendingThreadMutex_);
+}
+    
+void ListQueueClass::interruptPendingThread_() {
+    for (int i = 0; i < this->maxPendingThreadCount_; i++) {
+    //    if (this.pendingThreadArray_[i] != null) {
+    //        pendingThreadArray_[i].interrupt();
+    //        this.pendingThreadArray_[i] = null;
+            return;
+    //    }
+    }
+}
+
+void ListQueueClass::abendQueue(const char *msg_val) {
+    if (!this->abendQueueIsOn_) {
+        return;
+    }
+        
+    pthread_mutex_lock(&this->queueMutex_);
+    this->abendQueue_(msg_val);
+    pthread_mutex_unlock(&this->queueMutex_);
 }
 
 void ListQueueClass::abendQueue_(const char *msg_val) {

@@ -6,13 +6,9 @@
  ******************************************************************************
  */
 
+#pragma once
+
 #include <stdio.h>
-#include "../phwang.h"
-#include "queue_entry_class.h"
-
-QueueEntryClass::QueueEntryClass() {
-    memset(this, 0, sizeof (*this));
-}
-
-QueueEntryClass::~QueueEntryClass() {
-}
+#include <string.h>
+#include <unistd.h>
+#include <malloc.h>

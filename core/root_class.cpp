@@ -18,10 +18,14 @@ RootClass::RootClass() {
 	
 	this->rawApiObject_ = new RawApiClass(this);
 	this->utilsObject_ = new UtilsClass();
-	new ListQueueClass();
-	new QueueEntryClass();
+	ListQueueClass *q = new ListQueueClass(true, 0);
+	q->enqueue((void *) "hello");
+	q->enqueue((void *) "test queue");
+	char *s = (char *) q->dequeue();
+	this->log("RootClass", s);
+	s = (char *) q->dequeue();
+	this->log("RootClass", s);
 }
-
 RootClass::~RootClass() {
 }
 

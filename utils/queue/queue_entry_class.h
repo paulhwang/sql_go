@@ -17,8 +17,6 @@ public:
     QueueEntryClass *next;
     QueueEntryClass *prev;
     void *data;
-    
-    void clear();
 };
 
 #endif

@@ -9,22 +9,36 @@
 #ifndef LIST_QUEUE_CLASS_H
 #define LIST_QUEUE_CLASS_H
 
+#include <pthread.h>
+
 class QueueEntryClass;
 
 class ListQueueClass {
 public:
-	ListQueueClass();
+	ListQueueClass(bool do_suspend_val, int max_length_val);
 	~ListQueueClass();
+    int length() { return this->length_; }
+    void enqueue(void *data_val);
+    void *dequeue();
+    void flush();
 
 private:
 	int length_;
     QueueEntryClass *head_;
     QueueEntryClass *tail_;
+    pthread_mutex_t queueMutex_;
+    pthread_mutex_t pendingThreadMutex_;
     int maxLength_;
-
+    int maxPendingThreadCount_;
+    //Thread[] pendingThreadArray_;
+    bool abendQueueIsOn_;
+    
 	void enqueue_(QueueEntryClass *entry_val);
 	QueueEntryClass *dequeue_();
 	void flush_();
+    void interruptPendingThread();
+    void interruptPendingThread_();
+    void abendQueue(const char *msg_val);
 	void abendQueue_(const char *msg_val);
 
 	const char *objectName() { return "ListQueueClass"; }
