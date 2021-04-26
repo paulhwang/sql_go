@@ -20,13 +20,12 @@ public:
 
 	SqlServerRawApiClass *rawApiObject() { return this->rawApiObject_; }
 	UtilsClass *utilsObject() { return this->utilsObject_; }
-	AbendClass* abendObject();
 
 private:
 	SqlServerRawApiClass *rawApiObject_;
 	UtilsClass *utilsObject_;
 
-	const char *objectName() { return "SqlServerRootClass"; }
+    const char *objectName() { return "SqlServerRootClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }
     void log(const char *s0, const char *s1);
     void abend(const char *s0, const char *s1);

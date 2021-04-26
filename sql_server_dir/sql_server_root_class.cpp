@@ -7,6 +7,7 @@
  */
 
 #include <stdio.h>
+#include "../utils_dir/utils_include.h"
 #include "../utils_dir/utils_class.h"
 #include "../utils_dir/abend_dir/abend_class.h"
 #include "../utils_dir/queue_mgr_dir/list_queue_class.h"
@@ -32,9 +33,17 @@ SqlServerRootClass::SqlServerRootClass() {
 SqlServerRootClass::~SqlServerRootClass() {
 }
 
-AbendClass *SqlServerRootClass::abendObject() { return this->utilsObject()->abendObject(); }
-void SqlServerRootClass::log(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1); }
-void SqlServerRootClass::abend(const char *s0, const char *s1) { char buf[1048]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->abendIt(buf, s1); }
+
+
+
+
+void SqlServerRootClass::log(const char *s0, const char *s1) {
+	char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);
+}
+
+void SqlServerRootClass::abend(const char *s0, const char *s1) {
+	char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->abendIt(buf, s1);
+}
 
 void SqlServerRootClass::logIt(const char *s0, const char *s1) {
 	if (this->debugSwitchOn_) {
