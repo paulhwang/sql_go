@@ -18,6 +18,15 @@
 #include "sql_server_root_class.h"
 #include "sql_server_raw_api_class.h"
 
+void *func1(void *) {
+	printf("in func1\n");
+	return NULL;
+}
+void *func2(void *) {
+	printf("in func2\n");
+	return NULL;
+}
+
 SqlServerRootClass::SqlServerRootClass() {
     memset(this, 0, sizeof (*this));
     this->debugSwitchOn_ = true;
@@ -36,8 +45,8 @@ SqlServerRootClass::SqlServerRootClass() {
 
 	new ListMgrClass();
 	ThreadMgrClass *thread_mgr = new ThreadMgrClass();
-	thread_mgr->createThreadObject("aaa", NULL);
-	new ThreadEntityClass("SqlServerRootClass", NULL);
+	thread_mgr->createThreadObject("aaa", func1);
+	new ThreadEntityClass("SqlServerRootClass", func2);
 }
 
 SqlServerRootClass::~SqlServerRootClass() {

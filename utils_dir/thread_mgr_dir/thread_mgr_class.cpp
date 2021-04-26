@@ -21,7 +21,7 @@ ThreadMgrClass::~ThreadMgrClass() {
 
 }
 
-ThreadEntityClass *ThreadMgrClass::createThreadObject(char *thread_name_val, void *(*start_routine_val)(void *)) {
+ThreadEntityClass *ThreadMgrClass::createThreadObject(const char *thread_name_val, void *(*start_routine_val)(void *)) {
     ThreadEntityClass *thread_object = new ThreadEntityClass(thread_name_val, start_routine_val);
     this->insertToThreadList(thread_object);
     return thread_object;

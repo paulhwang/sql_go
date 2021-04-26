@@ -9,7 +9,7 @@
 #include "../utils_include.h"
 #include "thread_entity_class.h"
 
-ThreadEntityClass::ThreadEntityClass(char *thread_name_val, void *(*start_routine_val)(void *)) {
+ThreadEntityClass::ThreadEntityClass(const char *thread_name_val, void *(*start_routine_val)(void *)) {
     memset(this, 0, sizeof (*this));
     this->debugSwitchOn_ = true;
     this->debug(true, "ThreadEntityClass", thread_name_val);

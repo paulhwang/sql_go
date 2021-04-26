@@ -16,7 +16,7 @@ public:
 	ThreadMgrClass();
 	~ThreadMgrClass();
 
-	ThreadEntityClass *createThreadObject(char *thread_name_val, void *(*start_routine_val)(void *));
+	ThreadEntityClass *createThreadObject(const char *thread_name_val, void *(*start_routine_val)(void *));
 
 private:
 	void insertToThreadList(ThreadEntityClass *thread_object_val);

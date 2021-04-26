@@ -13,11 +13,11 @@
 
 class ThreadEntityClass {
 public:
-	ThreadEntityClass(char *thread_name_val, void *(*start_routine_val)(void *));
+	ThreadEntityClass(const char *thread_name_val, void *(*start_routine_val)(void *));
 	~ThreadEntityClass();
 
 private:
-	char *threadName_;
+	const char *threadName_;
 	pthread_t thread_;
 
 	const char *objectName() { return "ThreadEntityClass"; }
