@@ -9,12 +9,16 @@
 #ifndef THREAD_ENTITY_CLASS_H
 #define THREAD_ENTITY_CLASS_H
 
+#include <pthread.h>
+
 class ThreadEntityClass {
 public:
-	ThreadEntityClass();
+	ThreadEntityClass(char *thread_name_val, void *calling_object_val);
 	~ThreadEntityClass();
 
 private:
+	char *threadName_;
+	pthread_t thread_;
 
 	const char *objectName() { return "ThreadEntityClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }

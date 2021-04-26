@@ -35,8 +35,9 @@ SqlServerRootClass::SqlServerRootClass() {
 	this->log("SqlServerRootClass", s);
 
 	new ListMgrClass();
-	new ThreadMgrClass();
-	new ThreadEntityClass();
+	ThreadMgrClass *thread_mgr = new ThreadMgrClass();
+	thread_mgr->createThreadObject("aaa", NULL);
+	new ThreadEntityClass("SqlServerRootClass", NULL);
 }
 
 SqlServerRootClass::~SqlServerRootClass() {

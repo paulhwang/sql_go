@@ -8,6 +8,7 @@
 
 #include "../utils_include.h"
 #include "thread_mgr_class.h"
+#include "thread_entity_class.h"
 
 ThreadMgrClass::ThreadMgrClass() {
     memset(this, 0, sizeof (*this));
@@ -20,6 +21,15 @@ ThreadMgrClass::~ThreadMgrClass() {
 
 }
 
+ThreadEntityClass *ThreadMgrClass::createThreadObject(char *thread_name_val, void *calling_object_val) {
+    ThreadEntityClass *thread_object = new ThreadEntityClass(thread_name_val, calling_object_val);
+    this->insertToThreadList(thread_object);
+    return thread_object;
+}
+    
+void ThreadMgrClass::insertToThreadList(ThreadEntityClass *thread_object_val) {
+        
+}
 
 void ThreadMgrClass::log(const char *s0, const char *s1) {
     char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);

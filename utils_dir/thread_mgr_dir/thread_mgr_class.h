@@ -9,12 +9,17 @@
 #ifndef THREAD_MGR_CLASS_H
 #define THREAD_MGR_CLASS_H
 
+class ThreadEntityClass;
+
 class ThreadMgrClass {
 public:
 	ThreadMgrClass();
 	~ThreadMgrClass();
 
+	ThreadEntityClass *createThreadObject(char *thread_name_val, void *calling_object_val);
+
 private:
+	void insertToThreadList(ThreadEntityClass *thread_object_val);
 
 	const char *objectName() { return "ThreadMgrClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }

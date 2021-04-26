@@ -9,10 +9,13 @@
 #include "../utils_include.h"
 #include "thread_entity_class.h"
 
-ThreadEntityClass::ThreadEntityClass() {
+ThreadEntityClass::ThreadEntityClass(char *thread_name_val, void *calling_object_val) {
     memset(this, 0, sizeof (*this));
     this->debugSwitchOn_ = true;
-    this->debug(true, "ThreadEntityClass", "init");
+    this->debug(true, "ThreadEntityClass", thread_name_val);
+
+    this->threadName_ = thread_name_val;
+    pthread_create(&this->thread_, NULL, NULL, NULL);
 
 }
 
