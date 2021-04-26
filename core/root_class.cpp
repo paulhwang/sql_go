@@ -7,7 +7,7 @@
  */
 
 #include <stdio.h>
-#include "../utils/abend/abend_class.h"
+#include "../utils/abend_dir/abend_class.h"
 #include "../utils/queue_mgr_dir/list_queue_class.h"
 #include "../utils/queue_mgr_dir/queue_entry_class.h"
 #include "root_class.h"

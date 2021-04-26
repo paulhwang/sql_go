@@ -8,7 +8,7 @@
 
 include ../Makefile.inc
 
-ABEND_DIR = abend
+ABEND_DIR = abend_dir
 ABEND_OBJS = $(ABEND_DIR)/abend_class.o
 
 QUEUE_MGR_DIR = queue_mgr_dir

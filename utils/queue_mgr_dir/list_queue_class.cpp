@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../phwang.h"
-#include "../abend/abend_class.h"
+#include "../abend_dir/abend_class.h"
 #include "list_queue_class.h"
 #include "queue_entry_class.h"
 

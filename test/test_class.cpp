@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include "../utils/utils_class.h"
+#include "../utils/abend_dir/abend_class.h"
 #include "test_class.h"
 #include "../core/raw_api_class.h"
 

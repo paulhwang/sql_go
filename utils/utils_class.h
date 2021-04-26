@@ -9,17 +9,17 @@
 #ifndef UTILS_CLASS_H
 #define UTILS_CLASS_H
 
-#include "abend/abend_class.h"
+class AbendClass;
 
 class UtilsClass {
 public:
 	UtilsClass();
 	~UtilsClass();
 
-	AbendClass* abendObject() { return this->abendObject_; }
+	AbendClass *abendObject() { return this->abendObject_; }
 
 private:
-	AbendClass* abendObject_;
+	AbendClass *abendObject_;
 };
 
 #endif

@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include "utils_class.h"
+#include "abend_dir/abend_class.h"
 
 UtilsClass::UtilsClass() {
 	printf("UtilsClass\n");
