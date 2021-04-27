@@ -22,7 +22,6 @@ ListMgrClass::ListMgrClass(int id_size_val, int array_size_val, const char *call
     this->entryCount_ = 0;
     this->MaxIdIndexTableIndex_ = 0;
     this->maxIndex_ = -1;
-    //this->lock_ = new ReentrantLock();
     this->arraySize_ = array_size_val;
         
     this->maxGlobalId_ = 1;
@@ -30,7 +29,11 @@ ListMgrClass::ListMgrClass(int id_size_val, int array_size_val, const char *call
         this->maxGlobalId_ *= 10;
     }
     this->maxGlobalId_ -= 1;
-        
+
+    if (pthread_mutex_init(&this->listMgrMutex_, NULL) != 0) {
+        this->abend("ListMgrClass", "pthread_mutex_init for listMgrMutex_ fail");
+    }
+
     //this->entryArray_ = new ListEntry[this->arraySize_];
 
 }
@@ -47,6 +50,18 @@ int ListMgrClass::allocId() {
     return this->globalId_;
 }
 
+
+void ListMgrClass::abendListMgr(const char *msg_val) {
+    if (!this->abendListMgrClassIsOn)
+        return;
+        
+    pthread_mutex_lock(&this->listMgrMutex_);
+    this->abendListMgr_(msg_val);
+     pthread_mutex_unlock(&this->listMgrMutex_);
+}
+    
+void ListMgrClass::abendListMgr_(const char *msg_val) {
+}
 
 void ListMgrClass::log(const char *s0, const char *s1) {
     char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);
