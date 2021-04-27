@@ -11,6 +11,9 @@ include ../Makefile.inc
 ABEND_DIR = abend_dir
 ABEND_OBJS = $(ABEND_DIR)/abend_class.o
 
+BINDER_DIR = binder_dir
+BINDER_OBJS = $(BINDER_DIR)/binder_class.o $(BINDER_DIR)/binder_bundle_class.o $(BINDER_DIR)/binder_port_class.o $(BINDER_DIR)/binder_port_mgr_class.o
+
 ENCODERS_DIR = encoders_dir
 ENCODERS_OBJS = $(ENCODERS_DIR)/encoders_class.o
 
@@ -40,6 +43,9 @@ utils_class.o: utils_class.cpp utils_class.h
 
 $(ABEND_OBJS):
 		cd $(ABEND_DIR); make clean; make; cd ..
+
+$(BINDER_OBJS):
+		cd $(BINDER_DIR); make clean; make; cd ..
 
 $(ENCODERS_OBJS):
 		cd $(ENCODERS_DIR); make clean; make; cd ..

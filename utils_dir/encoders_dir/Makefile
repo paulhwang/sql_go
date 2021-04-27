@@ -10,6 +10,7 @@ include ../../Makefile.inc
 
 ENCODERS_LIB = encoders_lib.a
 ENCODERS_OBJS = encoders_class.o
+
 clean_make:
 	make clean; make all
 
@@ -23,6 +24,6 @@ encoders_class.o:	encoders_class.cpp encoders_class.h
 	$(GPP) -c encoders_class.cpp
 
 clean: 
-	$(RM) $(LIST_MGR_OBJS) $(ENCODERS_OBJS)
+	$(RM) $(ENCODERS_LIB) $(ENCODERS_OBJS)
 
 
