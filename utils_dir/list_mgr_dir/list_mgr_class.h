@@ -31,20 +31,21 @@ private:
     int maxIndex_;
     int maxGlobalId_;
     int entryCount_;
-    //ListEntry[] oldEntryArray_;//needed for postponing garbage collection
-    //ListEntry[] entryArray_;
+    ListEntryClass **oldEntryArray_;//needed for postponing garbage collection
+    ListEntryClass **entryArray_;
     int arraySize_;
-    //Lock lock_;
     pthread_mutex_t listMgrMutex_;
 
+    int entryCount() { return this->entryCount_; }
+    int idSize() { return this->idSize_; }
+    int maxIndex() { return this->maxIndex_; }
+    ListEntryClass **entryArray() { return this->entryArray_; }
     int allocId();
     ListEntryClass *mallocEntry_();
 	void free_(ListEntryClass *entry_val);
     void flush_();
     void abendListMgr(const char *msg_val);
     void abendListMgr_(const char *msg_val);
-
-
 
     const char *objectName() { return "ListMgrClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }

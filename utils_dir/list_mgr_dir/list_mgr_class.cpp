@@ -9,6 +9,7 @@
 
 #include "../utils_include.h"
 #include "list_mgr_class.h"
+#include "list_entry_class.h"
 
 ListMgrClass::ListMgrClass(int id_size_val, int array_size_val, const char *caller_name_val, int first_global_id_val) {
     memset(this, 0, sizeof (*this));
@@ -34,8 +35,7 @@ ListMgrClass::ListMgrClass(int id_size_val, int array_size_val, const char *call
         this->abend("ListMgrClass", "pthread_mutex_init for listMgrMutex_ fail");
     }
 
-    //this->entryArray_ = new ListEntry[this->arraySize_];
-
+    this->entryArray_ = (ListEntryClass **) malloc(this->arraySize_ * sizeof(ListEntryClass *));
 }
 
 ListMgrClass::~ListMgrClass() {
@@ -51,6 +51,8 @@ int ListMgrClass::allocId() {
 }
 
 ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
+    char debug_buf[128];
+
     this->debug(false, "malloc", "start");
         
     this->abendListMgr("before malloc");
@@ -61,7 +63,7 @@ ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
         
     int id = this->allocId();
     this->entryCount_++;
-    //entry->setData(id, entity_int_val);
+    entry->setData(id, entity_int_val);
     //entity_int_val->bindListEntry(entry, this->callerName_);
         
     pthread_mutex_unlock(&this->listMgrMutex_);
@@ -69,19 +71,50 @@ ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
     this->abendListMgr("after malloc");
         
     if (this->entryCount_ > this->maxGlobalId_) {
-        //this->abend("malloc", "entryCount_=" + this->entryCount_ + " > maxGlobalId_=" + this->maxGlobalId_);
+        sprintf(debug_buf, "entryCount_=%i > maxGlobalId_=%i", this->entryCount_, this->maxGlobalId_);
+        this->abend("malloc", debug_buf);
     }
         
-    //if (entry->index() > this->maxGlobalId_) {
-        //this->abend("malloc", "index=" + entry->index() + " > maxGlobalId_=" + this->maxGlobalId_);
-    //}
+    if (entry->index() > this->maxGlobalId_) {
+        sprintf(debug_buf, "index=%i > maxGlobalId_=%i", entry->index(), this->maxGlobalId_);
+        this->abend("malloc", debug_buf);
+    }
       
-    //this->debug(false, "malloc", "id=" + entry.id() + " index=" + entry->index());
+    sprintf(debug_buf, "id=%i > index=%i", entry->id(), entry->index());
+    this->debug(false, "malloc", debug_buf);
     return entry;
 }
 
 ListEntryClass *ListMgrClass::mallocEntry_() {
-    return 0;
+    for (int i = 0; i < this->arraySize_; i++) {
+        if (this->entryArray_[i] == NULL) {
+            this->entryArray_[i] = new ListEntryClass(i, this->idSize());
+            if (i > this->maxIndex_) {
+                    this->maxIndex_ = i;
+            }
+            else {
+                this->abend("malloc_", "maxIndex");
+            }
+            return this->entryArray_[i];
+        }
+        else {
+            if (this->entryArray_[i]->data() == NULL) {
+                return this->entryArray_[i];
+            }
+        }
+    }
+
+    this->oldEntryArray_ = this->entryArray_;
+    ListEntryClass **new_array = (ListEntryClass **) malloc(this->arraySize_ * 2 * sizeof(ListEntryClass *));
+    for (int i = 0; i < this->arraySize_; i++) {
+        new_array[i] = this->oldEntryArray_[i];
+        //*** to remove the lock from reading array //this.entryArray_[i] = null;;
+    }
+    this->entryArray_ = new_array;
+    this->maxIndex_ = this->arraySize_;
+    this->arraySize_ = this->arraySize_ * 2;
+    this->entryArray_[this->maxIndex_] = new ListEntryClass(this->maxIndex_, this->idSize());
+    return this->entryArray_[this->maxIndex_];
 }
 
 void ListMgrClass::free(ListEntryClass *entry_val) {

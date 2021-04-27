@@ -9,12 +9,26 @@
 #ifndef LIST_ENTRY_CLASS_H
 #define LIST_ENTRY_CLASS_H
 
+class ListEntryInt;
+
 class ListEntryClass {
 public:
-	ListEntryClass();
-	~ListEntryClass();
+    ListEntryClass(int index_val, int id_size_val);
+    ~ListEntryClass();
+
+    int index() { return this->index_; }
+    int id() { return this->id_; }
+    char *idStr() { return this->id_str_; }
+    ListEntryInt *data() { return this->data_; }
+	void setData(int id_val, ListEntryInt *data_val);
 
 private:
+    int id_;
+    char *id_str_;
+    ListEntryInt *data_;
+    int index_;
+    int id_size_;
+    char *indexStr_;
 
 	const char *objectName() { return "ListEntryClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }
