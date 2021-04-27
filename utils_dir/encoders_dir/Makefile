@@ -8,7 +8,7 @@
 
 include ../../Makefile.inc
 
-ENCODERS_LIB = list_mgr_lib.a
+ENCODERS_LIB = encoders_lib.a
 ENCODERS_OBJS = encoders_class.o
 clean_make:
 	make clean; make all
