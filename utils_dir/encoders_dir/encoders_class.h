@@ -74,6 +74,9 @@ public:
     static char *sSubstring4_(char *str_val) { return sSubstring_(str_val, 4); }
     static char *sSubstring5_(char *str_val) { return sSubstring_(str_val, 5); }
     static char *sSubstring6_(char *str_val) { return sSubstring_(str_val, 6); }
+
+    static void subString(const char *from_str_val, char *to_str_val, int from_val, int to_val);
+
 };
 
 #endif

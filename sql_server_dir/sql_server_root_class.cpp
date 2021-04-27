@@ -10,6 +10,7 @@
 #include "../utils_dir/utils_include.h"
 #include "../utils_dir/utils_class.h"
 #include "../utils_dir/abend_dir/abend_class.h"
+#include "../utils_dir/encoders_dir/encoders_class.h"
 #include "../utils_dir/queue_mgr_dir/list_queue_class.h"
 #include "../utils_dir/queue_mgr_dir/queue_entry_class.h"
 #include "../utils_dir/list_mgr_dir/list_mgr_class.h"
@@ -47,6 +48,15 @@ SqlServerRootClass::SqlServerRootClass() {
 	new ListMgrClass(4, 10, "SqlServerRootClass", 7000);
 	this->threadMgrObject_->createThreadObject("aaa", func1);
 	this->threadMgrObject_->createThreadObject("SqlServerRootClass", func2);
+
+
+	char buf[30];
+	const char *ss = "0123456789A";
+	EncodersClass::subString(ss, buf, 3, 6);
+	printf("substr=%s\n", buf);
+	ss = ss + 2;
+	printf("ss=%s\n", ss);
+	
 }
 
 SqlServerRootClass::~SqlServerRootClass() {

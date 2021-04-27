@@ -47,14 +47,14 @@ char *EncodersClass::sEncode(char *str_val, int size_val) {
 }
 
 char *EncodersClass::sDecode(char *str_val, int size_val) {
-	return 0;
     //int len = Encoders.iDecodeRaw(str_val.substring(0, size_val));
     //return str_val.substring(size_val, size_val + len);
+    return 0;
 }
 
 char *EncodersClass::sDecode_(char *str_val, int size_val) {
-	return 0;
     //return str_val.substring(size_val + Encoders.iDecodeRaw(str_val.substring(0, size_val)));
+    return 0;
 }
 
 char *EncodersClass::sSubstring(char *str_val, int size_val) {
@@ -63,8 +63,14 @@ char *EncodersClass::sSubstring(char *str_val, int size_val) {
     //return str_val.substring(0, size_val + len);
 }
 
-char *sSubstring_(char *str_val, int size_val) {
+char *EncodersClass::sSubstring_(char *str_val, int size_val) {
 	return 0;
     //return str_val.substring(size_val + Encoders.iDecodeRaw(str_val.substring(0, size_val)));
 }
 
+void EncodersClass::subString(const char *from_str_val, char *to_str_val, int from_val, int to_val) {
+    for (int i = from_val; i < to_val; i++) {
+        to_str_val[i - from_val] = from_str_val[i];
+    }
+    to_str_val[to_val -from_val] = 0;
+}
