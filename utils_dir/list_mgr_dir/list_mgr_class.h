@@ -11,10 +11,16 @@
 
 #include <pthread.h>
 
+class ListEntryClass;
+class ListEntryInt;
+
 class ListMgrClass {
 public:
-	ListMgrClass(int id_size_val, int array_size_val, const char *caller_name_val, int first_global_id_val);
-	~ListMgrClass();
+    ListMgrClass(int id_size_val, int array_size_val, const char *caller_name_val, int first_global_id_val);
+    ~ListMgrClass();
+    ListEntryClass *mallocEntry(ListEntryInt *entity_int_val);
+    void free(ListEntryClass *entry_val);
+    void flush();
 
 private:
     bool abendListMgrClassIsOn;
@@ -32,6 +38,9 @@ private:
     pthread_mutex_t listMgrMutex_;
 
     int allocId();
+    ListEntryClass *mallocEntry_();
+	void free_(ListEntryClass *entry_val);
+    void flush_();
     void abendListMgr(const char *msg_val);
     void abendListMgr_(const char *msg_val);
 
