@@ -31,6 +31,10 @@ void ListEntryClass::setData(int id_val, ListEntryInt *data_val) {
     //this.id_str_ = Encoders.sEncode2(id_str_buf.toString());
 }
 
+void ListEntryClass::clearData() {
+    this->data_ = NULL;
+}
+
 void ListEntryClass::log(const char *s0, const char *s1) {
     char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);
 }

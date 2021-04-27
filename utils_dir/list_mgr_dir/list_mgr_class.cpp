@@ -6,10 +6,10 @@
  ******************************************************************************
  */
 
-
 #include "../utils_include.h"
 #include "list_mgr_class.h"
 #include "list_entry_class.h"
+#include "list_entry_int.h"
 
 ListMgrClass::ListMgrClass(int id_size_val, int array_size_val, const char *caller_name_val, int first_global_id_val) {
     memset(this, 0, sizeof (*this));
@@ -64,7 +64,7 @@ ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
     int id = this->allocId();
     this->entryCount_++;
     entry->setData(id, entity_int_val);
-    //entity_int_val->bindListEntry(entry, this->callerName_);
+    entity_int_val->bindListEntry(entry, this->callerName_);
         
     pthread_mutex_unlock(&this->listMgrMutex_);
 
@@ -128,8 +128,8 @@ void ListMgrClass::free(ListEntryClass *entry_val) {
 }
 
 void ListMgrClass::free_(ListEntryClass *entry_val) {
-    //this.entryArray_[entry_val.index()].data().unBindListEntry(this.callerName_);
-    //this.entryArray_[entry_val.index()].clearData();
+    this->entryArray_[entry_val->index()]->data()->unBindListEntry(this->callerName_);
+    this->entryArray_[entry_val->index()]->clearData();
     this->entryCount_--;
 }
 
@@ -145,9 +145,9 @@ void ListMgrClass::flush() {
 
 void ListMgrClass::flush_() {
     for (int i = 0; i <= this->maxIndex_; i++) {
-        //this->entryArray_[i]->data().unBindListEntry(this->callerName_);
-        //this->entryArray_[i]->clearData();
-        //this->entryArray_[i] = null;
+        this->entryArray_[i]->data()->unBindListEntry(this->callerName_);
+        this->entryArray_[i]->clearData();
+        this->entryArray_[i] = NULL;
     }
     this->entryCount_ = 0;
 }

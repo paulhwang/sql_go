@@ -21,6 +21,7 @@ public:
     char *idStr() { return this->id_str_; }
     ListEntryInt *data() { return this->data_; }
 	void setData(int id_val, ListEntryInt *data_val);
+	void clearData();
 
 private:
     int id_;
