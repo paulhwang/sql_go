@@ -16,7 +16,7 @@ ListEntryClass::ListEntryClass(int index_val, int id_size_val) {
     
     this->index_ = index_val;
     this->id_size_ = id_size_val;
-    //this->indexStr_ = Encoders->iEncodeRaw(this->index_, this->id_size_);
+    this->indexStr_ = EncodersClass::iEncodeRaw(this->index_, this->id_size_);
 }
 
 ListEntryClass::~ListEntryClass() {

@@ -15,6 +15,7 @@
 #include <malloc.h>
 #include "utils_define.h"
 #include "abend_dir/abend_class.h"
+#include "encoders_dir/encoders_class.h"
 
 
 #endif
