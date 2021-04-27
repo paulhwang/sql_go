@@ -19,8 +19,8 @@ public:
     ListMgrClass(int id_size_val, int array_size_val, const char *caller_name_val, int first_global_id_val);
     ~ListMgrClass();
     ListEntryClass *mallocEntry(ListEntryInt *entity_int_val);
-    void free(ListEntryClass *entry_val);
-    void flush();
+    void freeEntry(ListEntryClass *entry_val);
+    void flushEntry();
 
 private:
     bool abendListMgrClassIsOn;
@@ -42,8 +42,8 @@ private:
     ListEntryClass **entryArray() { return this->entryArray_; }
     int allocId();
     ListEntryClass *mallocEntry_();
-	void free_(ListEntryClass *entry_val);
-    void flush_();
+	void freeEntry_(ListEntryClass *entry_val);
+    void flushEntry_();
     void abendListMgr(const char *msg_val);
     void abendListMgr_(const char *msg_val);
 

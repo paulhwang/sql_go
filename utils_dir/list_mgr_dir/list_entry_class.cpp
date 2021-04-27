@@ -22,7 +22,6 @@ ListEntryClass::ListEntryClass(int index_val, int id_size_val) {
 ListEntryClass::~ListEntryClass() {
 }
 
-
 void ListEntryClass::setData(int id_val, ListEntryInt *data_val) {
     this->id_ = id_val;
     this->data_ = data_val;

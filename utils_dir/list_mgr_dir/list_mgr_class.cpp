@@ -39,7 +39,8 @@ ListMgrClass::ListMgrClass(int id_size_val, int array_size_val, const char *call
 }
 
 ListMgrClass::~ListMgrClass() {
-
+    this->flushEntry();
+    free(this->entryArray_);
 }
 
 int ListMgrClass::allocId() {
@@ -53,9 +54,9 @@ int ListMgrClass::allocId() {
 ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
     char debug_buf[128];
 
-    this->debug(false, "malloc", "start");
+    this->debug(false, "mallocEntry", "start");
         
-    this->abendListMgr("before malloc");
+    this->abendListMgr("before mallocEntry");
 
     pthread_mutex_lock(&this->listMgrMutex_);
         
@@ -68,20 +69,20 @@ ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
         
     pthread_mutex_unlock(&this->listMgrMutex_);
 
-    this->abendListMgr("after malloc");
+    this->abendListMgr("after mallocEntry");
         
     if (this->entryCount_ > this->maxGlobalId_) {
         sprintf(debug_buf, "entryCount_=%i > maxGlobalId_=%i", this->entryCount_, this->maxGlobalId_);
-        this->abend("malloc", debug_buf);
+        this->abend("mallocEntry", debug_buf);
     }
         
     if (entry->index() > this->maxGlobalId_) {
         sprintf(debug_buf, "index=%i > maxGlobalId_=%i", entry->index(), this->maxGlobalId_);
-        this->abend("malloc", debug_buf);
+        this->abend("mallocEntry", debug_buf);
     }
       
     sprintf(debug_buf, "id=%i > index=%i", entry->id(), entry->index());
-    this->debug(false, "malloc", debug_buf);
+    this->debug(false, "mallocEntry", debug_buf);
     return entry;
 }
 
@@ -93,7 +94,7 @@ ListEntryClass *ListMgrClass::mallocEntry_() {
                     this->maxIndex_ = i;
             }
             else {
-                this->abend("malloc_", "maxIndex");
+                this->abend("mallocEntry_", "maxIndex");
             }
             return this->entryArray_[i];
         }
@@ -110,6 +111,7 @@ ListEntryClass *ListMgrClass::mallocEntry_() {
         new_array[i] = this->oldEntryArray_[i];
         //*** to remove the lock from reading array //this.entryArray_[i] = null;;
     }
+    free(this->oldEntryArray_);
     this->entryArray_ = new_array;
     this->maxIndex_ = this->arraySize_;
     this->arraySize_ = this->arraySize_ * 2;
@@ -117,36 +119,38 @@ ListEntryClass *ListMgrClass::mallocEntry_() {
     return this->entryArray_[this->maxIndex_];
 }
 
-void ListMgrClass::free(ListEntryClass *entry_val) {
-    this->abendListMgr("before free");
+void ListMgrClass::freeEntry(ListEntryClass *entry_val) {
+    this->abendListMgr("before freeEntry");
         
     pthread_mutex_lock(&this->listMgrMutex_);
-    this->free_(entry_val);
+    this->freeEntry_(entry_val);
     pthread_mutex_unlock(&this->listMgrMutex_);
         
-    this->abendListMgr("after free");
+    this->abendListMgr("after freeEntry");
 }
 
-void ListMgrClass::free_(ListEntryClass *entry_val) {
+void ListMgrClass::freeEntry_(ListEntryClass *entry_val) {
     this->entryArray_[entry_val->index()]->data()->unBindListEntry(this->callerName_);
     this->entryArray_[entry_val->index()]->clearData();
+    free(entry_val);
     this->entryCount_--;
 }
 
-void ListMgrClass::flush() {
-    this->abendListMgr("before flush");
+void ListMgrClass::flushEntry() {
+    this->abendListMgr("before flushEntry");
         
     pthread_mutex_lock(&this->listMgrMutex_);
-    this->flush_();
+    this->flushEntry_();
     pthread_mutex_unlock(&this->listMgrMutex_);
         
-    this->abendListMgr("after flush");
+    this->abendListMgr("after flushEntry");
 }
 
-void ListMgrClass::flush_() {
+void ListMgrClass::flushEntry_() {
     for (int i = 0; i <= this->maxIndex_; i++) {
         this->entryArray_[i]->data()->unBindListEntry(this->callerName_);
         this->entryArray_[i]->clearData();
+        free(this->entryArray_[i]);
         this->entryArray_[i] = NULL;
     }
     this->entryCount_ = 0;
