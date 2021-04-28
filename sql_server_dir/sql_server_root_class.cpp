@@ -58,7 +58,7 @@ SqlServerRootClass::SqlServerRootClass() {
 	printf("ss=%s\n", ss);
 
 
-	char *ss1 = EncodersClass::sEncode2("1234567");
+	char *ss1 = EncodersClass::sEncode2("12345");
 	printf("ss1=%s\n", ss1);
 
 	char *ss2 = EncodersClass::sDecode2(ss1);
@@ -67,9 +67,18 @@ SqlServerRootClass::SqlServerRootClass() {
 
 	char bbb[100];
 	strcpy(bbb, "071234567abcdef");
+	char *aaaa = EncodersClass::sDecode2(bbb);
+	printf("aaaa=%s\n", aaaa);
 	char *ccc = EncodersClass::sDecode2_(bbb);
-	printf("ss2=%s\n", ccc);
+	printf("ccc=%s\n", ccc);
 
+	char aaa[100];
+	strcpy(aaa, "071234567abcdef");
+	char *eee = EncodersClass::sSubstring2(aaa);
+	printf("eee=%s\n", eee);
+
+	ccc = EncodersClass::sSubstring2_(aaa);
+	printf("ccc=%s\n", ccc);
 }
 
 SqlServerRootClass::~SqlServerRootClass() {

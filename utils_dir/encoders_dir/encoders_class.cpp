@@ -99,14 +99,29 @@ char *EncodersClass::sDecode_(char *str_val, int size_val) {
 }
 
 char *EncodersClass::sSubstring(char *str_val, int size_val) {
-	return 0;
+    char length_buf[8];
+    memcpy(length_buf, str_val, size_val);
+    length_buf[size_val] = 0;
+    int len = iDecodeRaw(length_buf);
+
+    char *buf = (char *) malloc(strlen(str_val) + 1);
+    memcpy(buf, str_val, size_val + len);
+    buf[size_val + len];
+    return buf;
+
     //int len = Encoders.iDecodeRaw(str_val.substring(0, size_val));
     //return str_val.substring(0, size_val + len);
 }
 
 char *EncodersClass::sSubstring_(char *str_val, int size_val) {
-	return 0;
-    //return str_val.substring(size_val + Encoders.iDecodeRaw(str_val.substring(0, size_val)));
+    char length_buf[8];
+    memcpy(length_buf, str_val, size_val);
+    length_buf[size_val] = 0;
+    int len = iDecodeRaw(length_buf);
+
+    char *buf = (char *) malloc(strlen(str_val) + 1);
+    strcpy(buf, str_val + size_val + len);
+    return buf;
 }
 
 void EncodersClass::subString(const char *from_str_val, char *to_str_val, int from_val, int to_val) {
