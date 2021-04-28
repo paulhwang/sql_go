@@ -83,7 +83,8 @@ char *EncodersClass::sDecode(char *str_val, int size_val) {
     int len = iDecodeRaw(length_buf);
 
     char *buf = (char *) malloc(len + 1);
-    strcpy(buf,str_val + size_val);
+    memcpy(buf, str_val + size_val, len);
+    buf[len] = 0;
     return buf;
 }
 
@@ -104,13 +105,10 @@ char *EncodersClass::sSubstring(char *str_val, int size_val) {
     length_buf[size_val] = 0;
     int len = iDecodeRaw(length_buf);
 
-    char *buf = (char *) malloc(strlen(str_val) + 1);
+    char *buf = (char *) malloc(size_val + len + 1);
     memcpy(buf, str_val, size_val + len);
-    buf[size_val + len];
+    buf[size_val + len] = 0;
     return buf;
-
-    //int len = Encoders.iDecodeRaw(str_val.substring(0, size_val));
-    //return str_val.substring(0, size_val + len);
 }
 
 char *EncodersClass::sSubstring_(char *str_val, int size_val) {
