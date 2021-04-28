@@ -10,6 +10,12 @@
 #define SQL_SERVER_CONNECT_MGR_CLASS_H
 
 class SqlServerRootClass;
+class ListMgrClass;
+
+#define ENGINE_BASE_ID_SIZE_  4
+#define ENGINE_BASE_ID_SIZE  (ENGINE_BASE_ID_SIZE_ * 2 + 2)
+#define FIRST_BASE_ID 9000
+#define LIST_MGR_ARRAY_SIZE 128
 
 class SqlServerConnectMgrClass {
 public:
@@ -18,6 +24,7 @@ public:
 
 private:
     SqlServerRootClass *rootObject_;
+    ListMgrClass *listMgrObject_;
 
     const char *objectName() { return "SqlServerConnectMgrClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }

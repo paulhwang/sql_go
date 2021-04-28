@@ -7,6 +7,7 @@
  */
 
 #include "../utils_dir/utils_include.h"
+#include "../utils_dir/list_mgr_dir/list_mgr_class.h"
 #include "sql_server_connect_mgr_class.h"
 
 SqlServerConnectMgrClass::SqlServerConnectMgrClass(SqlServerRootClass *root_object_val) {
@@ -15,6 +16,7 @@ SqlServerConnectMgrClass::SqlServerConnectMgrClass(SqlServerRootClass *root_obje
     this->debug(true, "SqlServerConnectMgrClass", "init");
 
     this->rootObject_ = root_object_val;
+    this->listMgrObject_ = new ListMgrClass(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this->objectName(), FIRST_BASE_ID);
 }
 
 SqlServerConnectMgrClass::~SqlServerConnectMgrClass() {

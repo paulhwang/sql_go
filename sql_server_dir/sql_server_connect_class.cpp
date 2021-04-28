@@ -9,12 +9,11 @@
 #include "../utils_dir/utils_include.h"
 #include "sql_server_connect_class.h"
 
-SqlServerConnectClass::SqlServerConnectClass(SqlServerRootClass *root_object_val) {
+SqlServerConnectClass::SqlServerConnectClass() {
     memset(this, 0, sizeof (*this));
     this->debugSwitchOn_ = true;
     this->debug(true, "SqlServerConnectClass", "init");
 
-    this->rootObject_ = root_object_val;
 }
 
 SqlServerConnectClass::~SqlServerConnectClass() {
