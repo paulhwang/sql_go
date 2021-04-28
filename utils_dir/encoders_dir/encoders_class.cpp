@@ -16,7 +16,17 @@ EncodersClass::~EncodersClass() {
 }
 
 char *EncodersClass::iEncodeRaw(int number_val, int size_val) {
-	return 0;
+    char *buf = (char *) malloc(size_val + 1);
+    memset(buf, '0', size_val);
+    buf[size_val] = 0;
+    int number = number_val;
+    for (int i = size_val - 1; i >= 0; i--) {
+        buf[i] = number % 10 + 48;
+        number /= 10;
+        if (number == 0)
+            break;
+    }
+    return buf;
 }
 
 char *EncodersClass::iEncodeLen(int number_val, int size_val) {
