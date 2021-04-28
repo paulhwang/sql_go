@@ -20,18 +20,27 @@ ListEntryClass::ListEntryClass(int index_val, int id_size_val) {
 }
 
 ListEntryClass::~ListEntryClass() {
+    free(this->indexStr_);
+    free(this->id_str_);
 }
 
 void ListEntryClass::setData(int id_val, ListEntryInt *data_val) {
     this->id_ = id_val;
     this->data_ = data_val;
+    char *id_only_str = EncodersClass::iEncodeRaw(this->id_, this->id_size_);
+
+    this->id_str_ = (char *) malloc(this->id_size_ * 2 + 1);
+    memcpy(this->id_str_, id_only_str, this->id_size_);
+    strcpy(this->id_str_ + this->id_size_, this->indexStr_);
     //StringBuilder id_str_buf = new StringBuilder(Encoders.iEncodeRaw(this.id_, this.id_size_));
     //id_str_buf.append(this.indexStr_);
     //this.id_str_ = Encoders.sEncode2(id_str_buf.toString());
+    free(id_only_str);
 }
 
 void ListEntryClass::clearData() {
     this->data_ = NULL;
+    free(this->id_str_);
 }
 
 void ListEntryClass::log(const char *s0, const char *s1) {
