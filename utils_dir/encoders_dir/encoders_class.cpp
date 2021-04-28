@@ -121,10 +121,3 @@ char *EncodersClass::sSubstring_(char *str_val, int size_val) {
     strcpy(buf, str_val + size_val + len);
     return buf;
 }
-
-void EncodersClass::subString(const char *from_str_val, char *to_str_val, int from_val, int to_val) {
-    for (int i = from_val; i < to_val; i++) {
-        to_str_val[i - from_val] = from_str_val[i];
-    }
-    to_str_val[to_val -from_val] = 0;
-}
