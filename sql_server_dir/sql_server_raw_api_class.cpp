@@ -7,14 +7,18 @@
  */
 
 #include <stdio.h>
+#include "../utils_dir/utils_include.h"
 #include "../utils_dir/utils_class.h"
 #include "../sqlite_dir/sqlite3.h"
 #include "sql_server_root_class.h"
 #include "sql_server_raw_api_class.h"
 
 SqlServerRawApiClass::SqlServerRawApiClass(SqlServerRootClass *root_object_val) {
-	this->rootObject_ = root_object_val;
-	this->log("SqlServerRawApiClass", "init");
+    memset(this, 0, sizeof (*this));
+    this->debugSwitchOn_ = true;
+    this->debug(true, "SqlServerRawApiClass", "init");
+
+    this->rootObject_ = root_object_val;
 }
 
 SqlServerRawApiClass::~SqlServerRawApiClass() {
@@ -64,18 +68,24 @@ int SqlServerRawApiClass::sqlite3Exec(sqlite3* sqlite3_val, const char *sql, int
 	return sqlite3_exec(sqlite3_val, sql, callback, val, errmsg);
 }
 
- void SqlServerRawApiClass::debug(bool on_off_val, char *s0, char *s1) {
- 	if (on_off_val) this->log(s0, s1);
- }
- 
- void SqlServerRawApiClass::log(const char *s0, const char *s1) {
-	char buf[1048];
- 	sprintf(buf, "%s.%s()", this->objectName(), s0);
- 	this->rootObject()->logIt(buf, s1);
+void SqlServerRawApiClass::log(const char *s0, const char *s1) {
+    char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);
 }
- 
- void SqlServerRawApiClass::abend(const char *s0, const char *s1) {
- 	char buf[1048];
- 	sprintf(buf, "%s.%s()", this->objectName(), s0);
- 	this->rootObject()->abendIt(buf, s1);
- }
+
+void SqlServerRawApiClass::abend(const char *s0, const char *s1) {
+    char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->abendIt(buf, s1);
+}
+
+void SqlServerRawApiClass::logIt(const char *s0, const char *s1) {
+    if (this->debugSwitchOn_) {
+        AbendClass::sLog(s0, s1);
+    }
+}
+
+void SqlServerRawApiClass::abendIt(const char *s0, const char *s1) {
+    if (this->debugSwitchOn_) {
+        AbendClass::sAbend(s0, s1);
+    }
+}
+
+

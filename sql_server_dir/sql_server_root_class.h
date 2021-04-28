@@ -13,19 +13,25 @@ class UtilsClass;
 class AbendClass;
 class ThreadMgrClass;
 class SqlServerRawApiClass;
+class SqlServerUParserClass;
+class SqlServerDBinderClass;
+class SqlServerConnectMgrClass;
 
 class SqlServerRootClass {
 public:
-	SqlServerRootClass();
-	~SqlServerRootClass();
+    SqlServerRootClass();
+    ~SqlServerRootClass();
 
     ThreadMgrClass *threadMgrObject_;
-	SqlServerRawApiClass *rawApiObject() { return this->rawApiObject_; }
-	UtilsClass *utilsObject() { return this->utilsObject_; }
+    SqlServerRawApiClass *rawApiObject() { return this->rawApiObject_; }
+    UtilsClass *utilsObject() { return this->utilsObject_; }
 
 private:
-	SqlServerRawApiClass *rawApiObject_;
-	UtilsClass *utilsObject_;
+    SqlServerUParserClass *uParserObject_;
+    SqlServerDBinderClass *dBinderObject_;
+    SqlServerConnectMgrClass *connectMgrObject_;
+    SqlServerRawApiClass *rawApiObject_;
+    UtilsClass *utilsObject_;
 
     const char *objectName() { return "SqlServerRootClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }

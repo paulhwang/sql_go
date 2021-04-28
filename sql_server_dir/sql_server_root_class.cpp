@@ -18,6 +18,10 @@
 #include "../utils_dir/thread_mgr_dir/thread_mgr_class.h"
 #include "sql_server_root_class.h"
 #include "sql_server_raw_api_class.h"
+#include "sql_server_uparser_class.h"
+#include "sql_server_dbinder_class.h"
+#include "sql_server_connect_mgr_class.h"
+#include "sql_server_connect_class.h"
 
 void *func1(void *) {
 	printf("in func1\n");
@@ -33,8 +37,12 @@ SqlServerRootClass::SqlServerRootClass() {
     this->debugSwitchOn_ = true;
     this->debug(true, "SqlServerRootClass", "init");
     
-	this->threadMgrObject_ = new ThreadMgrClass();
-	this->rawApiObject_ = new SqlServerRawApiClass(this);
+    this->threadMgrObject_ = new ThreadMgrClass();
+    this->rawApiObject_ = new SqlServerRawApiClass(this);
+    this->uParserObject_ = new SqlServerUParserClass(this);
+    this->dBinderObject_ = new SqlServerDBinderClass(this);
+    this->connectMgrObject_ = new SqlServerConnectMgrClass(this);
+
 	this->utilsObject_ = new UtilsClass();
 	
 	ListQueueClass *q = new ListQueueClass(true, 0);
@@ -51,6 +59,11 @@ SqlServerRootClass::SqlServerRootClass() {
 }
 
 SqlServerRootClass::~SqlServerRootClass() {
+	free(this->connectMgrObject_);
+	free(this->dBinderObject_);
+	free(this->uParserObject_);
+	free(this->rawApiObject_);
+	free(this->threadMgrObject_);
 }
 
 void SqlServerRootClass::log(const char *s0, const char *s1) {
