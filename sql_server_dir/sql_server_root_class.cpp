@@ -59,8 +59,13 @@ SqlServerRootClass::SqlServerRootClass() {
 
 	char * r5 = EncodersClass::iEncodeRaw5(123);
 	printf("r5=%s\n", r5);
-	char * l5 = EncodersClass::iEncodeLen(123456789, 10);
+	int i = EncodersClass::iDecodeRaw(r5);
+	printf("i=%d\n", i);
+
+	char * l5 = EncodersClass::iEncodeLen(123, 5);
 	printf("l5=%s\n", l5);
+	i = EncodersClass::iDecodeLen(l5);
+	printf("i=%d\n", i);
 	
 }
 

@@ -60,8 +60,11 @@ int EncodersClass::iDecodeRaw(char *str_val) {
 }
 
 int EncodersClass::iDecodeLen(char *str_val) {
-    char *str = sDecode2(str_val);
-    return iDecodeRaw(str);
+    int len = (str_val[0] - '0') * 10 + str_val[1] - '0';
+    char buf[32];
+    memcpy(buf, str_val + 2, len + 1);
+    //char *str = sDecode2(str_val);
+    return iDecodeRaw(buf);
 }
 
 char *EncodersClass::sEncode(char *str_val, int size_val) {
