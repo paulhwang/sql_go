@@ -80,17 +80,22 @@ char *EncodersClass::sDecode(char *str_val, int size_val) {
     char length_buf[8];
     memcpy(length_buf, str_val, size_val);
     length_buf[size_val] = 0;
-    printf("length_buf = %s\n", length_buf);
     int len = iDecodeRaw(length_buf);
-    printf("len = %d\n", len);
+
     char *buf = (char *) malloc(len + 1);
     strcpy(buf,str_val + size_val);
     return buf;
 }
 
 char *EncodersClass::sDecode_(char *str_val, int size_val) {
-    //return str_val.substring(size_val + Encoders.iDecodeRaw(str_val.substring(0, size_val)));
-    return 0;
+    char length_buf[8];
+    memcpy(length_buf, str_val, size_val);
+    length_buf[size_val] = 0;
+    int len = iDecodeRaw(length_buf);
+
+    char *buf = (char *) malloc(strlen(str_val) + 1);
+    strcpy(buf, str_val + size_val + len);
+    return buf;
 }
 
 char *EncodersClass::sSubstring(char *str_val, int size_val) {
