@@ -9,6 +9,7 @@
 #include "../utils_dir/utils_include.h"
 #include "../utils_dir/list_mgr_dir/list_mgr_class.h"
 #include "sql_server_connect_mgr_class.h"
+#include "sql_server_connect_class.h"
 
 SqlServerConnectMgrClass::SqlServerConnectMgrClass(SqlServerRootClass *root_object_val) {
     memset(this, 0, sizeof (*this));
@@ -20,8 +21,15 @@ SqlServerConnectMgrClass::SqlServerConnectMgrClass(SqlServerRootClass *root_obje
 }
 
 SqlServerConnectMgrClass::~SqlServerConnectMgrClass() {
+    free(this->listMgrObject_);
 }
 
+
+SqlServerConnectClass *SqlServerConnectMgrClass::mallocConnect(const char *connect_name_val) {
+    SqlServerConnectClass *connect = new SqlServerConnectClass(connect_name_val);
+    //this->listMgrObject_->mallocEntry(connect);
+    return connect;
+}
 
 void SqlServerConnectMgrClass::log(const char *s0, const char *s1) {
     char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);

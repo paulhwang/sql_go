@@ -10,6 +10,7 @@
 #define SQL_SERVER_CONNECT_MGR_CLASS_H
 
 class SqlServerRootClass;
+class SqlServerConnectClass;
 class ListMgrClass;
 
 #define ENGINE_BASE_ID_SIZE_  4
@@ -21,6 +22,8 @@ class SqlServerConnectMgrClass {
 public:
     SqlServerConnectMgrClass(SqlServerRootClass *root_object_val);
     ~SqlServerConnectMgrClass();
+
+    SqlServerConnectClass *mallocConnect(const char *connect_name_val);
 
 private:
     SqlServerRootClass *rootObject_;

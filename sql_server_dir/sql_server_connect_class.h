@@ -14,7 +14,7 @@ class ListMgrClass;
 
 class SqlServerConnectClass {
 public:
-    SqlServerConnectClass();
+    SqlServerConnectClass(const char *connect_name_val);
     ~SqlServerConnectClass();
 
 private:

@@ -9,7 +9,7 @@
 #include "../utils_dir/utils_include.h"
 #include "sql_server_connect_class.h"
 
-SqlServerConnectClass::SqlServerConnectClass() {
+SqlServerConnectClass::SqlServerConnectClass(const char *connect_name_val) {
     memset(this, 0, sizeof (*this));
     this->debugSwitchOn_ = true;
     this->debug(true, "SqlServerConnectClass", "init");
