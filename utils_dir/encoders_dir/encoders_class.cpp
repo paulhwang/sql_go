@@ -63,12 +63,17 @@ int EncodersClass::iDecodeLen(char *str_val) {
     int len = (str_val[0] - '0') * 10 + str_val[1] - '0';
     char buf[32];
     memcpy(buf, str_val + 2, len + 1);
-    //char *str = sDecode2(str_val);
     return iDecodeRaw(buf);
 }
 
-char *EncodersClass::sEncode(char *str_val, int size_val) {
-	return 0;
+char *EncodersClass::sEncode(const char *str_val, int size_val) {
+    int str_len = strlen(str_val);
+    char *buf = (char *) malloc(size_val + str_len + 1);
+    char *s = iEncodeRaw(str_len, size_val);
+    memcpy(buf, s, size_val);
+    strcpy(buf + size_val, str_val);
+    free(s);
+	return buf;
 }
 
 char *EncodersClass::sDecode(char *str_val, int size_val) {

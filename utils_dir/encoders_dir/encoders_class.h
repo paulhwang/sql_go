@@ -35,13 +35,13 @@ public:
     static int iDecodeRaw(char *str_val);
 	static int iDecodeLen(char *str_val);
 
-    static char *sEncode(char *str_val, int size_val);
-    static char *sEncode1(char *str_val) { return sEncode(str_val, 1); }
-    static char *sEncode2(char *str_val) { return sEncode(str_val, 2); }
-    static char *sEncode3(char *str_val) { return sEncode(str_val, 3); }
-    static char *sEncode4(char *str_val) { return sEncode(str_val, 4); }
-    static char *sEncode5(char *str_val) { return sEncode(str_val, 5); }
-    static char *sEncode6(char *str_val) { return sEncode(str_val, 6); }
+    static char *sEncode(const char *str_val, int size_val);
+    static char *sEncode1(const char *str_val) { return sEncode(str_val, 1); }
+    static char *sEncode2(const char *str_val) { return sEncode(str_val, 2); }
+    static char *sEncode3(const char *str_val) { return sEncode(str_val, 3); }
+    static char *sEncode4(const char *str_val) { return sEncode(str_val, 4); }
+    static char *sEncode5(const char *str_val) { return sEncode(str_val, 5); }
+    static char *sEncode6(const char *str_val) { return sEncode(str_val, 6); }
 
 	static char *sDecode(char *str_val, int size_val);
     static char *sDecode1(char *str_val) { return sDecode(str_val, 1); }

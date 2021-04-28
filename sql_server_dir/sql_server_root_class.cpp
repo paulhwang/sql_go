@@ -67,6 +67,8 @@ SqlServerRootClass::SqlServerRootClass() {
 	i = EncodersClass::iDecodeLen(l5);
 	printf("i=%d\n", i);
 	
+	ss = EncodersClass::sEncode6("1234567890");
+	printf("ss=%s\n", ss);
 }
 
 SqlServerRootClass::~SqlServerRootClass() {
