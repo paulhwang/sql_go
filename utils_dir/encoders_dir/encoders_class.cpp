@@ -30,8 +30,20 @@ char *EncodersClass::iEncodeRaw(int number_val, int size_val) {
 }
 
 char *EncodersClass::iEncodeLen(int number_val, int size_val) {
-    char *str = iEncodeRaw(number_val, size_val);
-    return sEncode2(str);
+    char *buf = (char *) malloc(size_val + 2 + 1);
+    buf[1] = size_val % 10 + '0';
+    buf[0] = size_val / 10 + '0';
+
+    memset(buf + 2, '0', size_val);
+    buf[size_val + 2] = 0;
+    int number = number_val;
+    for (int i = size_val - 1; i >= 0; i--) {
+        buf[i + 2] = number % 10 + '0';
+        number /= 10;
+        if (number == 0)
+            break;
+    }
+    return buf;
 }
 
 int EncodersClass::iDecodeRaw(char *str_val) {
