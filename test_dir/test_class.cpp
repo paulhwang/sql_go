@@ -44,12 +44,16 @@ void TestClass::testConnect() {
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test005");
     this->debug(true, "testConnect", connect->connectIdStr());
     SqlServerConnectClass *connect1 = this->sqlServerRootObject_->connectMgrObject()->getConnectByIdStr(connect->connectIdStr());
-    this->debug(true, "testConnect", connect1->connectIdStr());
+    this->debug(true, "testConnect1", connect1->connectIdStr());
+    this->debug(true, "tetestConnect", "done");
 }
 
 void TestClass::testSqlite() {
+    if (&this->userSqlite3_ == NULL)
+        printf("null\n");
     this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users", &this->userSqlite3_);
-
+    printf("bbb\n");
+ 
 }
 
 void TestClass::log(const char *s0, const char *s1) {

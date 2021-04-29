@@ -25,7 +25,10 @@ SqlServerRawApiClass::~SqlServerRawApiClass() {
 }
 
 int SqlServerRawApiClass::sqlite3Open(const char *filename, sqlite3 **ppDb) {
-	return sqlite3_open(filename, ppDb);
+    this->debug(true, "sqlite3Open", filename);
+	int result = sqlite3_open(filename, ppDb);
+    this->debug(true, "sqlite3Open", "done");
+    return result;
 }
 
 int SqlServerRawApiClass::sqlite3Prepare(sqlite3 *db, const char *zSql, int nByte, sqlite3_stmt **ppStmt, const char **pzTail) {

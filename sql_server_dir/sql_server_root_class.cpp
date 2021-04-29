@@ -54,8 +54,8 @@ SqlServerRootClass::SqlServerRootClass() {
 	this->log("SqlServerRootClass", s);
 
 	new ListMgrClass(4, 10, "SqlServerRootClass", 7000);
-	this->threadMgrObject_->createThreadObject("aaa", func1);
-	this->threadMgrObject_->createThreadObject("SqlServerRootClass", func2);
+	//this->threadMgrObject_->createThreadObject("aaa", func1);
+	//this->threadMgrObject_->createThreadObject("SqlServerRootClass", func2);
 }
 
 SqlServerRootClass::~SqlServerRootClass() {

@@ -30,15 +30,13 @@ void ListEntryClass::setData(int id_val, void *data_val) {
     char *id_only_str = EncodersClass::iEncodeRaw(this->id_, this->id_size_);
 
     this->id_str_ = (char *) malloc(this->id_size_ * 2 + 3);
-    char *len_str = EncodersClass::iEncodeRaw2(this->id_size_ * 2);
-    memcpy(this->id_str_, len_str, 2);
+    int len = this->id_size_ * 2;
+    this->id_str_[0] = len / 10 + '0';
+    this->id_str_[1] = len % 10 + '0';
+
     memcpy(this->id_str_ + 2, id_only_str, this->id_size_);
     strcpy(this->id_str_ + 2 + this->id_size_, this->indexStr_);
-    //StringBuilder id_str_buf = new StringBuilder(Encoders.iEncodeRaw(this.id_, this.id_size_));
-    //id_str_buf.append(this.indexStr_);
-    //this.id_str_ = Encoders.sEncode2(id_str_buf.toString());
     free(id_only_str);
-    free(len_str);
 }
 
 void ListEntryClass::clearData() {

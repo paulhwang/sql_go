@@ -14,10 +14,8 @@ SqlServerRootClass *sql_server_root_object;
 TestClass *test;
 
 int main() {
-	printf("hello phwang\n");
-	sql_server_root_object = new SqlServerRootClass;
-	test = new TestClass(sql_server_root_object);
-	
-	test->doTest();
-
+    printf("hello phwang\n");
+    sql_server_root_object = new SqlServerRootClass;
+    test = new TestClass(sql_server_root_object);
+    test->doTest();
 }
