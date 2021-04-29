@@ -25,6 +25,7 @@ public:
 
     SqlServerConnectClass *mallocConnect(const char *connect_name_val);
     void freeConnect(SqlServerConnectClass *connect_val);
+    SqlServerConnectClass *getConnectByIdStr(const char *connect_id_str_val);
 
 private:
     SqlServerRootClass *rootObject_;

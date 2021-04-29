@@ -156,6 +156,46 @@ void ListMgrClass::flushEntry_() {
     this->entryCount_ = 0;
 }
 
+ListEntryClass *ListMgrClass::getEntryByIdStr(const char *id_str_val) {
+    char id_str[32];
+    memcpy(id_str, id_str_val + 2, this->idSize_);
+    id_str[idSize_] = 0;
+    int id = EncodersClass::iDecodeRaw(id_str);
+    //printf("getEntryByIdStr %s %s %d\n", id_str_val, id_str, id);
+
+    char index_str[32];
+    strcpy(index_str, id_str_val + 2 + idSize_);
+    int index = EncodersClass::iDecodeRaw(index_str);
+    //printf("getEntryByIdStr %s %s %d\n", id_str_val, index_str, index);
+
+    //printf("getEntryByIdStr %s %d %d\n", id_str_val, id, index);
+
+    ListEntryClass *entry;
+    //this.theLock.lock();
+    entry = this->getEntryByIdStr_(id, index);
+    //this.theLock.unlock();
+    return entry;
+}
+    
+ListEntryClass *ListMgrClass::getEntryByIdStr_(int id_val, int index_val) {
+    ListEntryClass *entry = this->entryArray_[index_val];
+    if (entry == NULL) {
+        this->abend("getEntryByIdStr_", "null entry");
+        return NULL;
+    }
+        
+    if (entry->data() == NULL) {
+        this->abend("getEntryByIdStr_", "null data");
+        return NULL;
+    }
+        
+    if (entry->id() != id_val) {
+        this->abend("getEntryByIdStr_", "id not match");
+        return NULL;
+    }
+    return entry;
+}
+
 void ListMgrClass::abendListMgr(const char *msg_val) {
     if (!this->abendListMgrClassIsOn)
         return;

@@ -37,6 +37,14 @@ void SqlServerConnectMgrClass::freeConnect(SqlServerConnectClass *connect_val) {
     connect_val->unBindListEntry(this->objectName());
     this->listMgrObject_->freeEntry(list_entry);
 }
+    
+SqlServerConnectClass *SqlServerConnectMgrClass::getConnectByIdStr(const char *connect_id_str_val) {
+    ListEntryClass *list_entry = this->listMgrObject_->getEntryByIdStr(connect_id_str_val);
+    if (list_entry == NULL) {
+        return NULL;
+    }
+    return (SqlServerConnectClass *) list_entry->data();
+}
 
 void SqlServerConnectMgrClass::log(const char *s0, const char *s1) {
     char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);

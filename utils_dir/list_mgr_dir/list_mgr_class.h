@@ -21,6 +21,7 @@ public:
     ListEntryClass *mallocEntry(void *entity_int_val);
     void freeEntry(ListEntryClass *entry_val);
     void flushEntry();
+    ListEntryClass *getEntryByIdStr(const char *id_str_val);
 
 private:
     bool abendListMgrClassIsOn;
@@ -44,6 +45,7 @@ private:
     ListEntryClass *mallocEntry_();
 	void freeEntry_(ListEntryClass *entry_val);
     void flushEntry_();
+    ListEntryClass *getEntryByIdStr_(int id_val, int index_val);
     void abendListMgr(const char *msg_val);
     void abendListMgr_(const char *msg_val);
 

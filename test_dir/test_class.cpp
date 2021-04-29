@@ -38,10 +38,13 @@ void TestClass::testConnect() {
     SqlServerConnectClass *connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test001");
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test002");
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test003");
+    this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test004");
     this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test005");
     this->debug(true, "testConnect", connect->connectIdStr());
+    SqlServerConnectClass *connect1 = this->sqlServerRootObject_->connectMgrObject()->getConnectByIdStr(connect->connectIdStr());
+    this->debug(true, "testConnect", connect1->connectIdStr());
 }
 
 void TestClass::testSqlite() {
