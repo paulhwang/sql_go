@@ -11,13 +11,19 @@
 
 class SqlServerRootClass;
 class ListMgrClass;
+class ListEntryClass;
 
 class SqlServerConnectClass {
 public:
     SqlServerConnectClass(const char *connect_name_val);
     ~SqlServerConnectClass();
 
+    ListEntryClass *listEntry() { return this->listEntry_; }
+	void bindListEntry(ListEntryClass *list_entry_object_val, const char *who_val);
+	void unBindListEntry(const char *who_val);
+
 private:
+    ListEntryClass *listEntry_;
 
     const char *objectName() { return "SqlServerConnectClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }

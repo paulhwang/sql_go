@@ -20,6 +20,20 @@ SqlServerConnectClass::~SqlServerConnectClass() {
 }
 
 
+void SqlServerConnectClass::bindListEntry(ListEntryClass *list_entry_object_val, const char *who_val) {
+        //if (this.listEntry_ == list_entry_object_val) {
+        //    this.abend("bindListEntry", "already done!");
+        //}
+        //this.listEntry_ = list_entry_object_val;
+}
+
+void SqlServerConnectClass::unBindListEntry(const char *who_val) {
+        //if (this.listEntry_ == null) {
+        //    this.abend("unBindListEntry", "already done!");
+        //}
+        //this.listEntry_ = null;
+}
+
 void SqlServerConnectClass::log(const char *s0, const char *s1) {
     char buf[UTILS_DEFINE_ABEND_BUF_SIZE]; sprintf(buf, "%s.%s()", this->objectName(), s0); this->logIt(buf, s1);
 }

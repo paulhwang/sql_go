@@ -24,11 +24,17 @@ SqlServerConnectMgrClass::~SqlServerConnectMgrClass() {
     free(this->listMgrObject_);
 }
 
-
 SqlServerConnectClass *SqlServerConnectMgrClass::mallocConnect(const char *connect_name_val) {
     SqlServerConnectClass *connect = new SqlServerConnectClass(connect_name_val);
-    //this->listMgrObject_->mallocEntry(connect);
+    //ListEntryClass *list_entry = this->listMgrObject_->mallocEntry(connect);
+    //connect->bindListEntry(list_entry, this.objectName());
     return connect;
+}
+
+void SqlServerConnectMgrClass::freeLink(SqlServerConnectClass *connect_val) {
+    ListEntryClass *list_entry = connect_val->listEntry();
+    connect_val->unBindListEntry(this->objectName());
+    this->listMgrObject_->freeEntry(connect_val->listEntry());
 }
 
 void SqlServerConnectMgrClass::log(const char *s0, const char *s1) {
