@@ -24,7 +24,7 @@ ListEntryClass::~ListEntryClass() {
     free(this->id_str_);
 }
 
-void ListEntryClass::setData(int id_val, ListEntryInt *data_val) {
+void ListEntryClass::setData(int id_val, void *data_val) {
     this->id_ = id_val;
     this->data_ = data_val;
     char *id_only_str = EncodersClass::iEncodeRaw(this->id_, this->id_size_);

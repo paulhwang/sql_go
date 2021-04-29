@@ -18,7 +18,7 @@ class ListMgrClass {
 public:
     ListMgrClass(int id_size_val, int array_size_val, const char *caller_name_val, int first_global_id_val);
     ~ListMgrClass();
-    ListEntryClass *mallocEntry(ListEntryInt *entity_int_val);
+    ListEntryClass *mallocEntry(void *entity_int_val);
     void freeEntry(ListEntryClass *entry_val);
     void flushEntry();
 

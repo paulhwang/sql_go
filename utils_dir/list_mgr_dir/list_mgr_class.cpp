@@ -51,7 +51,7 @@ int ListMgrClass::allocId() {
     return this->globalId_;
 }
 
-ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
+ListEntryClass *ListMgrClass::mallocEntry(void *entity_int_val) {
     char debug_buf[128];
 
     this->debug(false, "mallocEntry", "start");
@@ -65,7 +65,7 @@ ListEntryClass *ListMgrClass::mallocEntry(ListEntryInt *entity_int_val) {
     int id = this->allocId();
     this->entryCount_++;
     entry->setData(id, entity_int_val);
-    entity_int_val->bindListEntry(entry, this->callerName_);
+    //entity_int_val->bindListEntry(entry, this->callerName_);
         
     pthread_mutex_unlock(&this->listMgrMutex_);
 
@@ -130,7 +130,7 @@ void ListMgrClass::freeEntry(ListEntryClass *entry_val) {
 }
 
 void ListMgrClass::freeEntry_(ListEntryClass *entry_val) {
-    this->entryArray_[entry_val->index()]->data()->unBindListEntry(this->callerName_);
+    //this->entryArray_[entry_val->index()]->data()->unBindListEntry(this->callerName_);
     this->entryArray_[entry_val->index()]->clearData();
     free(entry_val);
     this->entryCount_--;
@@ -148,7 +148,7 @@ void ListMgrClass::flushEntry() {
 
 void ListMgrClass::flushEntry_() {
     for (int i = 0; i <= this->maxIndex_; i++) {
-        this->entryArray_[i]->data()->unBindListEntry(this->callerName_);
+        //this->entryArray_[i]->data()->unBindListEntry(this->callerName_);
         this->entryArray_[i]->clearData();
         free(this->entryArray_[i]);
         this->entryArray_[i] = NULL;

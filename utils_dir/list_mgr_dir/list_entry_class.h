@@ -19,19 +19,19 @@ public:
     int index() { return this->index_; }
     int id() { return this->id_; }
     char *idStr() { return this->id_str_; }
-    ListEntryInt *data() { return this->data_; }
-	void setData(int id_val, ListEntryInt *data_val);
+    void *data() { return this->data_; }
+    void setData(int id_val, void *data_val);
 	void clearData();
 
 private:
     int id_;
     char *id_str_;
-    ListEntryInt *data_;
+    void *data_;
     int index_;
     int id_size_;
     char *indexStr_;
 
-	const char *objectName() { return "ListEntryClass"; }
+    const char *objectName() { return "ListEntryClass"; }
     void debug(bool on_off_val, const char *s0, const char *s1) { if (on_off_val) this->log(s0, s1); }
     void log(const char *s0, const char *s1);
     void abend(const char *s0, const char *s1);
