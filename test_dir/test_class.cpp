@@ -41,7 +41,7 @@ void TestClass::testConnect() {
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test003");
     this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test004");
-    this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
+    //this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test005");
     this->debug(true, "testConnect", connect->connectIdStr());
     SqlServerConnectClass *connect1 = this->sqlServerRootObject_->connectMgrObject()->getConnectByIdStr(connect->connectIdStr());
@@ -50,10 +50,7 @@ void TestClass::testConnect() {
 }
 
 void TestClass::testSqlite() {
-    //this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users.db", &this->userSqlite3_);
-    sqlite3 *s;
-    int result = sqlite3_open("db_dir/test.db", &s);
-
+    this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users.db", &this->userSqlite3_);
 }
 
 void TestClass::log(const char *s0, const char *s1) {
