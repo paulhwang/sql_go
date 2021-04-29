@@ -7,6 +7,7 @@
  */
 
 #include "../utils_dir/utils_include.h"
+#include "../utils_dir/list_mgr_dir/list_entry_class.h"
 #include "sql_server_connect_class.h"
 
 SqlServerConnectClass::SqlServerConnectClass(const char *connect_name_val) {
@@ -19,19 +20,20 @@ SqlServerConnectClass::SqlServerConnectClass(const char *connect_name_val) {
 SqlServerConnectClass::~SqlServerConnectClass() {
 }
 
+int SqlServerConnectClass::connectId() {
+    return this->listEntry_->id();
+}
+
+char *SqlServerConnectClass::connectIdStr() {
+    return this->listEntry_->idStr();
+}
 
 void SqlServerConnectClass::bindListEntry(ListEntryClass *list_entry_object_val, const char *who_val) {
-        //if (this.listEntry_ == list_entry_object_val) {
-        //    this.abend("bindListEntry", "already done!");
-        //}
-        //this.listEntry_ = list_entry_object_val;
+    this->listEntry_ = list_entry_object_val;
 }
 
 void SqlServerConnectClass::unBindListEntry(const char *who_val) {
-        //if (this.listEntry_ == null) {
-        //    this.abend("unBindListEntry", "already done!");
-        //}
-        //this.listEntry_ = null;
+    this->listEntry_ = NULL;
 }
 
 void SqlServerConnectClass::log(const char *s0, const char *s1) {

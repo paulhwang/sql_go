@@ -8,6 +8,7 @@
 
 #include "../utils_dir/utils_include.h"
 #include "../utils_dir/list_mgr_dir/list_mgr_class.h"
+#include "../utils_dir/list_mgr_dir/list_entry_class.h"
 #include "sql_server_connect_mgr_class.h"
 #include "sql_server_connect_class.h"
 
@@ -26,15 +27,15 @@ SqlServerConnectMgrClass::~SqlServerConnectMgrClass() {
 
 SqlServerConnectClass *SqlServerConnectMgrClass::mallocConnect(const char *connect_name_val) {
     SqlServerConnectClass *connect = new SqlServerConnectClass(connect_name_val);
-    //ListEntryClass *list_entry = this->listMgrObject_->mallocEntry(connect);
-    //connect->bindListEntry(list_entry, this.objectName());
+    ListEntryClass *list_entry = this->listMgrObject_->mallocEntry(connect);
+    connect->bindListEntry(list_entry, this->objectName());
     return connect;
 }
 
-void SqlServerConnectMgrClass::freeLink(SqlServerConnectClass *connect_val) {
+void SqlServerConnectMgrClass::freeConnect(SqlServerConnectClass *connect_val) {
     ListEntryClass *list_entry = connect_val->listEntry();
     connect_val->unBindListEntry(this->objectName());
-    this->listMgrObject_->freeEntry(connect_val->listEntry());
+    this->listMgrObject_->freeEntry(list_entry);
 }
 
 void SqlServerConnectMgrClass::log(const char *s0, const char *s1) {

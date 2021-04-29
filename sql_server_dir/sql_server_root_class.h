@@ -22,11 +22,12 @@ public:
     SqlServerRootClass();
     ~SqlServerRootClass();
 
-    ThreadMgrClass *threadMgrObject_;
+    SqlServerConnectMgrClass *connectMgrObject() { return this->connectMgrObject_; }
     SqlServerRawApiClass *rawApiObject() { return this->rawApiObject_; }
     UtilsClass *utilsObject() { return this->utilsObject_; }
 
 private:
+    ThreadMgrClass *threadMgrObject_;
     SqlServerUParserClass *uParserObject_;
     SqlServerDBinderClass *dBinderObject_;
     SqlServerConnectMgrClass *connectMgrObject_;

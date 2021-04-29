@@ -18,9 +18,11 @@ public:
     SqlServerConnectClass(const char *connect_name_val);
     ~SqlServerConnectClass();
 
+    int connectId();
+    char *connectIdStr();
     ListEntryClass *listEntry() { return this->listEntry_; }
-	void bindListEntry(ListEntryClass *list_entry_object_val, const char *who_val);
-	void unBindListEntry(const char *who_val);
+    void bindListEntry(ListEntryClass *list_entry_object_val, const char *who_val);
+    void unBindListEntry(const char *who_val);
 
 private:
     ListEntryClass *listEntry_;

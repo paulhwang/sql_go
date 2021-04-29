@@ -10,7 +10,11 @@
 #include "../utils_dir/utils_include.h"
 #include "../utils_dir/utils_class.h"
 #include "../utils_dir/abend_dir/abend_class.h"
+#include "../utils_dir/list_mgr_dir/list_mgr_class.h"
+#include "../utils_dir/list_mgr_dir/list_entry_class.h"
 #include "../sql_server_dir/sql_server_raw_api_class.h"
+#include "../sql_server_dir/sql_server_connect_mgr_class.h"
+#include "../sql_server_dir/sql_server_connect_class.h"
 #include "test_class.h"
 
 TestClass::TestClass(SqlServerRootClass *root_class_val) {
@@ -18,17 +22,30 @@ TestClass::TestClass(SqlServerRootClass *root_class_val) {
     this->debugSwitchOn_ = true;
     this->debug(true, "TestClass", "init");
 
-    this->rootClass_ = root_class_val;
-
+    this->sqlServerRootObject_ = root_class_val;
 }
 
 TestClass::~TestClass() {
 }
 
 void TestClass::doTest() {
-	this->debug(true, "doTest", "init");
+    this->debug(true, "doTest", "init");
+    this->testConnect();
+    this->testSqlite();
+}
 
-	this->rootClass_->rawApiObject()->sqlite3Open("db_dir/go_users", &this->userSqlite3_);
+void TestClass::testConnect() {
+    SqlServerConnectClass *connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test001");
+    connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test002");
+    connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test003");
+    connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test004");
+    this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
+    connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test005");
+    this->debug(true, "testConnect", connect->connectIdStr());
+}
+
+void TestClass::testSqlite() {
+    this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users", &this->userSqlite3_);
 
 }
 

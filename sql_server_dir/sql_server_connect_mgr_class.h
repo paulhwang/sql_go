@@ -24,7 +24,7 @@ public:
     ~SqlServerConnectMgrClass();
 
     SqlServerConnectClass *mallocConnect(const char *connect_name_val);
-    void freeLink(SqlServerConnectClass *connect_val);
+    void freeConnect(SqlServerConnectClass *connect_val);
 
 private:
     SqlServerRootClass *rootObject_;

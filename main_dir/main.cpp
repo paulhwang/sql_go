@@ -10,13 +10,14 @@
 #include "../sql_server_dir/sql_server_root_class.h"
 #include "../test_dir/test_class.h"
 
-SqlServerRootClass *root;
+SqlServerRootClass *sql_server_root_object;
 TestClass *test;
 
 int main() {
 	printf("hello phwang\n");
-	root = new SqlServerRootClass;
-	test = new TestClass(root);
+	sql_server_root_object = new SqlServerRootClass;
+	test = new TestClass(sql_server_root_object);
+	
 	test->doTest();
 
 }

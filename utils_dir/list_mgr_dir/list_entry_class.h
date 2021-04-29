@@ -27,8 +27,8 @@ private:
     int id_;
     char *id_str_;
     void *data_;
-    int index_;
     int id_size_;
+    int index_;
     char *indexStr_;
 
     const char *objectName() { return "ListEntryClass"; }

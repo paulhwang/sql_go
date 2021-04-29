@@ -17,12 +17,14 @@ public:
 	TestClass(SqlServerRootClass *);
 	~TestClass();
 	void doTest();
+	void testConnect();
+	void testSqlite();
 	sqlite3 *userSqlite3() { return this->userSqlite3_; }
-	UtilsClass *utilsObject() { return this->rootClass_->utilsObject(); }
+	UtilsClass *utilsObject() { return this->sqlServerRootObject_->utilsObject(); }
 	AbendClass* abendObject();
 
 private:
-	SqlServerRootClass *rootClass_;
+	SqlServerRootClass *sqlServerRootObject_;
 	sqlite3 *userSqlite3_;
 
 	const char *objectName() { return "TestClass"; }
