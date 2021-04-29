@@ -51,7 +51,7 @@ void TestClass::testConnect() {
 void TestClass::testSqlite() {
     if (&this->userSqlite3_ == NULL)
         printf("null\n");
-    this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users", &this->userSqlite3_);
+    this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users.db", &this->userSqlite3_);
     printf("bbb\n");
  
 }

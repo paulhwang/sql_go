@@ -1,7 +1,7 @@
 *.o
 *.a
-target_dir/
-db_dir/
+target_dir/sql_server
+db_dir/*.db
 
 
 
