@@ -15,6 +15,7 @@
 #include "../sql_server_dir/sql_server_raw_api_class.h"
 #include "../sql_server_dir/sql_server_connect_mgr_class.h"
 #include "../sql_server_dir/sql_server_connect_class.h"
+#include "../sqlite_dir/sqlite3.h"
 #include "test_class.h"
 
 TestClass::TestClass(SqlServerRootClass *root_class_val) {
@@ -49,11 +50,10 @@ void TestClass::testConnect() {
 }
 
 void TestClass::testSqlite() {
-    if (&this->userSqlite3_ == NULL)
-        printf("null\n");
-    this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users.db", &this->userSqlite3_);
-    printf("bbb\n");
- 
+    //this->sqlServerRootObject_->rawApiObject()->sqlite3Open("db_dir/go_users.db", &this->userSqlite3_);
+    sqlite3 *s;
+    int result = sqlite3_open("db_dir/test.db", &s);
+
 }
 
 void TestClass::log(const char *s0, const char *s1) {
