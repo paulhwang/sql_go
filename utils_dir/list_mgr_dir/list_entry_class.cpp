@@ -29,8 +29,8 @@ void ListEntryClass::setData(int id_val, void *data_val) {
     this->data_ = data_val;
     char *id_only_str = EncodersClass::iEncodeRaw(this->id_, this->id_size_);
 
-    this->id_str_ = (char *) malloc(this->id_size_ * 2 + 3);
-    int len = this->id_size_ * 2;
+    int len = this->id_size_ << 1;
+    this->id_str_ = (char *) malloc(len + 3);
     this->id_str_[0] = len / 10 + '0';
     this->id_str_[1] = len % 10 + '0';
 

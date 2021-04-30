@@ -131,8 +131,12 @@ void ListMgrClass::freeEntry(ListEntryClass *entry_val) {
 
 void ListMgrClass::freeEntry_(ListEntryClass *entry_val) {
     //this->entryArray_[entry_val->index()]->data()->unBindListEntry(this->callerName_);
+    if (this->entryArray_[entry_val->index()] != entry_val) {
+        this->abend("freeEntry_", "not match");
+    }
     this->entryArray_[entry_val->index()]->clearData();
-    free(entry_val);
+    //this->entryArray_[entry_val->index()] = NULL;
+    //free(entry_val);
     this->entryCount_--;
 }
 

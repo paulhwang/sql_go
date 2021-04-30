@@ -41,7 +41,7 @@ void TestClass::testConnect() {
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test003");
     this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test004");
-    //this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
+    this->sqlServerRootObject_->connectMgrObject()->freeConnect(connect);
     connect = this->sqlServerRootObject_->connectMgrObject()->mallocConnect("test005");
     this->debug(true, "testConnect", connect->connectIdStr());
     SqlServerConnectClass *connect1 = this->sqlServerRootObject_->connectMgrObject()->getConnectByIdStr(connect->connectIdStr());
