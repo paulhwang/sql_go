@@ -15,7 +15,7 @@ class ListMgrClass;
 
 #define SQL_DB_ID_SIZE_  4
 #define SQL_DB_ID_SIZE  (SQL_DB_ID_SIZE_ * 2 + 2)
-#define FIRST_DB_ID 9000
+#define FIRST_DB_ID 8000
 #define DB_LIST_MGR_ARRAY_SIZE 128
 
 class SqlServerDBMgrClass {

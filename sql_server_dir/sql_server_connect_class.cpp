@@ -55,5 +55,3 @@ void SqlServerConnectClass::abendIt(const char *s0, const char *s1) {
         AbendClass::sAbend(s0, s1);
     }
 }
-
-
