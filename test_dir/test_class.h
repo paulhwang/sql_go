@@ -17,6 +17,7 @@ public:
 	TestClass(SqlServerRootClass *);
 	~TestClass();
 	void doTest();
+	void testDB();
 	void testConnect();
 	void testSqlite();
 	sqlite3 *userSqlite3() { return this->userSqlite3_; }

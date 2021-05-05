@@ -15,6 +15,8 @@
 #include "../sql_server_dir/sql_server_raw_api_class.h"
 #include "../sql_server_dir/sql_server_connect_mgr_class.h"
 #include "../sql_server_dir/sql_server_connect_class.h"
+#include "../sql_server_dir/sql_server_db_mgr_class.h"
+#include "../sql_server_dir/sql_server_db_class.h"
 #include "../sqlite_dir/sqlite3.h"
 #include "test_class.h"
 
@@ -31,8 +33,23 @@ TestClass::~TestClass() {
 
 void TestClass::doTest() {
     this->debug(true, "doTest", "init");
+    this->testDB();
     this->testConnect();
     this->testSqlite();
+}
+
+void TestClass::testDB() {
+    SqlServerDBClass *db = this->sqlServerRootObject_->dBMgrObject()->mallocDB("testDB001");
+    db = this->sqlServerRootObject_->dBMgrObject()->mallocDB("test002");
+    db = this->sqlServerRootObject_->dBMgrObject()->mallocDB("test003");
+    this->sqlServerRootObject_->dBMgrObject()->freeDB(db);
+    db = this->sqlServerRootObject_->dBMgrObject()->mallocDB("test004");
+    this->sqlServerRootObject_->dBMgrObject()->freeDB(db);
+    db = this->sqlServerRootObject_->dBMgrObject()->mallocDB("test005");
+    this->debug(true, "testConnect", db->dBIdStr());
+    SqlServerDBClass *db1 = this->sqlServerRootObject_->dBMgrObject()->getDBByIdStr(db->dBIdStr());
+    this->debug(true, "testConnect1", db1->dBIdStr());
+    this->debug(true, "tetestConnect", "done");
 }
 
 void TestClass::testConnect() {

@@ -16,12 +16,14 @@ class SqlServerRawApiClass;
 class SqlServerUParserClass;
 class SqlServerDBinderClass;
 class SqlServerConnectMgrClass;
+class SqlServerDBMgrClass;
 
 class SqlServerRootClass {
 public:
     SqlServerRootClass();
     ~SqlServerRootClass();
 
+    SqlServerDBMgrClass *dBMgrObject() { return this->dBMgrObject_; }
     SqlServerConnectMgrClass *connectMgrObject() { return this->connectMgrObject_; }
     SqlServerRawApiClass *rawApiObject() { return this->rawApiObject_; }
     UtilsClass *utilsObject() { return this->utilsObject_; }
@@ -30,6 +32,7 @@ private:
     ThreadMgrClass *threadMgrObject_;
     SqlServerUParserClass *uParserObject_;
     SqlServerDBinderClass *dBinderObject_;
+    SqlServerDBMgrClass *dBMgrObject_;
     SqlServerConnectMgrClass *connectMgrObject_;
     SqlServerRawApiClass *rawApiObject_;
     UtilsClass *utilsObject_;
