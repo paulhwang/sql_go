@@ -18,7 +18,7 @@ SqlServerConnectMgrClass::SqlServerConnectMgrClass(SqlServerRootClass *root_obje
     this->debug(true, "SqlServerConnectMgrClass", "init");
 
     this->rootObject_ = root_object_val;
-    this->listMgrObject_ = new ListMgrClass(ENGINE_BASE_ID_SIZE_, LIST_MGR_ARRAY_SIZE, this->objectName(), FIRST_BASE_ID);
+    this->listMgrObject_ = new ListMgrClass(SQL_CONNECT_ID_SIZE_, CONNECT_LIST_MGR_ARRAY_SIZE, this->objectName(), FIRST_CONNECT_ID);
 }
 
 SqlServerConnectMgrClass::~SqlServerConnectMgrClass() {
